@@ -1,0 +1,12 @@
+---
+import Page from '../layouts/page.astro';
+import Home from '../layouts/index.astro';
+import Intro from '../components/intro.astro';
+import { SITE_TITLE as title } from '../constant';
+---
+
+<Page header={title}>
+  <Home title={title} cls="justify-between">
+    <Intro />
+  </Home>
+</Page>

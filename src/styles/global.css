@@ -1,0 +1,27 @@
+html {
+  height: 100%;
+  scroll-behavior: smooth;
+  background-color: var(--theme-bg)
+}
+
+body {
+  font-family: Inter Variable, sans-serif;
+  margin: 0 auto;
+  height: 100%;
+  max-width: 48rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  font-size: .875rem;
+  line-height: 1.25rem;
+  font-weight: 400;
+  color: var(--theme-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale
+}
+
+@media (min-width: 768px) {
+  body {
+    padding-left: 0;
+    padding-right: 0
+  }
+}
