@@ -1,0 +1,58 @@
+---
+import { CollectionEntry, getCollection } from 'astro:content';
+import Page from '../../layouts/page.astro';
+import HomeLayout from '../../layouts/index.astro';
+import { SITE_TITLE as title } from '../../constant';
+
+type Post = CollectionEntry<'blog'>;
+
+function formatDate(date: Date): string {
+  const d = new Date(date);
+  const year = d.getFullYear();
+  const month = d.getMonth() + 1;
+  const day = d.getDay();
+  return `${year}-${month > 9 ? month : `0${month}`}-${day > 9 ? day : `0${day}`}`;
+}
+
+const posts = (await getCollection('blog'))
+  .filter((post) => !post.data.draft)
+  .map((post) => ({
+    ...post,
+    data: {
+      ...post.data,
+      pubYear: formatDate(post.data.date).slice(0, 4),
+      pubDate: formatDate(post.data.date)
+    },
+  }))
+  .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf())
+  .reduce((acc, cur) => {
+    if (!acc[cur.data.pubYear]) {
+      acc[cur.data.pubYear] = [];
+    }
+    acc[cur.data.pubYear].push(cur);
+    return acc;
+  }, {} as Record<string, Post[]>);
+---
+
+<Page header={title}>
+  <HomeLayout>
+    <ul class="py-20">
+      {
+        Object.keys(posts).map((year) =>
+          <li class="mt-8">
+            <h1 class="text-2xl">{year}</h1>
+            <ul class="list-disc mt-3">
+              {
+                posts[year].map((post: Post) =>
+                  <li class="ml-8 text-lg">
+                    <p class="pr-3">{formatDate(post.data.date)} <a href={`/blog/${post.slug}`}>{post.data.title}</a></p>
+                  </li>
+                )
+              }
+            </ul>
+          </li>
+        )
+      }
+    </ul>
+  </HomeLayout>
+</Page>

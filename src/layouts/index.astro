@@ -1,0 +1,13 @@
+---
+import Footer from '../components/footer.astro';
+import Header from '../components/header.astro';
+const { title, cls = '' } = Astro.props
+---
+
+<body class={`max-w-3xl mx-auto content min-h-screen flex flex-col ${cls}`}>
+  <Header title={title} />
+  <main>
+    <slot />
+  </main>
+  <Footer />
+</body>

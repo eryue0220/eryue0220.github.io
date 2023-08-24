@@ -1,0 +1,12 @@
+---
+import PageLayout from './page.astro'
+import IndexLayout from './index.astro';
+
+const { header } = Astro.props;
+---
+
+<PageLayout header={header}>
+  <IndexLayout>
+    <slot />
+  </IndexLayout>
+</PageLayout>

@@ -1,0 +1,13 @@
+---
+import { paths } from '../constant';
+---
+
+<nav class="py-10">
+  <ul class="flex justify-center">
+    {paths.map((path) =>
+      <li>
+        <a class="px-8 text-xl text-zinc-700" href={path.route}>{path.name}</a>
+      </li>
+    )}
+  </ul>
+</nav>
