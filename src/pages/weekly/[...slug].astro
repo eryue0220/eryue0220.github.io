@@ -1,6 +1,7 @@
 ---
 import { CollectionEntry, getCollection } from 'astro:content';
 import Post from '../../layouts/post.astro';
+import { formatDate } from '../../utils';
 
 export async function getStaticPaths() {
   const posts = await getCollection('weekly');
@@ -18,6 +19,11 @@ const { Content } = await render();
 
 <Post header={data.title}>
   <article class="prose lg:prose-xl">
+    <div class="flex items-center lg:p-0 mb-4">
+			<p class="bg-#cbd5e1 text-#475569 text-sm lg:p-1 lg:my-0">{formatDate(data.date)}</p>
+			<span class="text-#475569"> | </span>
+			<p class="bg-#cbd5e1 text-#475569 text-sm lg:p-1 lg:my-0">{data.tag}</p>
+		</div>
     <Content />
   </article>
 </Post>
