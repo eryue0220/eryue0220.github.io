@@ -24,7 +24,7 @@ const posts = (await getCollection('blog'))
       pubDate: formatDate(post.data.date)
     },
   }))
-  .sort((a, b) => a.data.date.valueOf() - b.data.date.valueOf())
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
   .reduce((acc, cur) => {
     if (!acc[cur.data.pubYear]) {
       acc[cur.data.pubYear] = [];
@@ -39,13 +39,16 @@ const posts = (await getCollection('blog'))
     <ul class="pl-40 py-20">
       {
         Object.keys(posts).map((year) =>
-          <li class="mt-8">
+          <li>
             <h1 class="text-2xl">{year}</h1>
             <ul class="list-disc mt-3">
               {
                 posts[year].map((post: Post) =>
-                  <li class="ml-8 text-lg">
+                  <li class="flex items-center mb-4 ml-8 text-lg">
                     <p class="pr-3">{formatDate(post.data.date)} <a href={`/blog/${post.slug}`}>{post.data.title}</a></p>
+                    {post.data.lang
+                      ? <p class="border-2 border-dotted border-zinc-600 text-sm">{post.data.lang?.toUpperCase()}</p>
+                      : null}
                   </li>
                 )
               }
