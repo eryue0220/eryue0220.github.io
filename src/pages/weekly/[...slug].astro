@@ -17,5 +17,7 @@ const { Content } = await render();
 ---
 
 <Post header={data.title}>
-  <Content />
+  <article class="prose lg:prose-xl">
+    <Content />
+  </article>
 </Post>
