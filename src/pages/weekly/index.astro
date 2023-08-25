@@ -3,16 +3,9 @@ import { CollectionEntry, getCollection } from 'astro:content';
 import Page from '../../layouts/page.astro';
 import HomeLayout from '../../layouts/index.astro';
 import { SITE_TITLE as title } from '../../constant';
+import { formatDate } from '../../utils';
 
 type Post = CollectionEntry<'weekly'>;
-
-function formatDate(date: Date): string {
-  const d = new Date(date);
-  const year = d.getFullYear();
-  const month = d.getMonth() + 1;
-  const day = d.getDate();
-  return `${year}-${month > 9 ? month : `0${month}`}-${day > 9 ? day : `0${day}`}`;
-}
 
 const posts = (await getCollection('weekly'))
   .filter((post) => !post.data.draft)
@@ -36,7 +29,7 @@ const posts = (await getCollection('weekly'))
 
 <Page header={title}>
   <HomeLayout>
-    <ul class="py-20">
+    <ul class="pl-40 py-20">
       {
         Object.keys(posts).map((year) =>
           <li class="mt-8">
