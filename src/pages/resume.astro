@@ -6,41 +6,43 @@ import { SITE_TITLE as title, skills } from '../constant';
 
 <PageLayout header={title}>
   <HomeLayout title={title}>
-    <section class="py-5 pl-40">
-      <h2 class="pb-3 text-3xl font-bold text-#525252">WORK EXPERIENCE</h2>
-      <ul class="ml-5 list-disc">
-        <li class="text-lg text-#525252"><p><b>Ant Group</b>, Senior Front-End Engineer ~ 2018.12 ~ 2023.07</p></li>
-        <li class="text-lg text-#525252"><p><b>Meituan</b>, FullStack Engineer ~ 2017.08 ~ 2018.12</p></li>
-        <li class="text-lg text-#525252"><p><b>LeTV</b>, Front-End Engineer — 2015.07 ~ 2017.07</p></li>
-      </ul>
-    </section>
-    <section class="py-5 pl-40">
-      <h2 class="pb-3 text-3xl font-bold text-#525252">PROJECT EXPERIENCE</h2>
-      <ul class="ml-5 list-disc">
-        <li class="text-lg text-#525252"><p>Actively involved in designing and developing large-scale interactive React frontend projects</p></li>
-        <li class="text-lg text-#525252"><p>Familiar with the underlying principles of frameworks like Express, Koa, EggJS</p></li>
-        <li class="text-lg text-#525252"><p>Contributed to open-source projects include Jest, Orogene</p></li>
-      </ul>
-    </section>
-    <section class="py-5 pl-40">
-      <h2 class="pb-3 text-3xl font-bold text-#525252">SKILLS</h2>
-      <ul class="flex justify-around">
-        {skills.map((skill) => <li><img src={skill} alt="" width="50px" width="50px" /></li>)}
-      </ul>
-    </section>
-    <section class="py-5 pl-40">
-      <h2 class="pb-3 text-3xl font-bold text-#525252">EDUCATION BACKGROUND</h2>
-      <p class="text-lg text-#525252">Journalism — Bachelor</p>
-      <p class="text-lg text-#525252">Hunan Institute of Science and Technology</p>
-      <p class="text-sm text-#525252">2011 ~ 2015</p>
-    </section>
-    <section class="py-5 pl-40">
-      <h2 class="pb-3 text-3xl font-bold text-#525252">LANGUAGE</h2>
-      <ul class="ml-5 list-disc">
-        <li class="text-lg text-#525252"><p class="leading-relaxed">Simplied Chinese</p></li>
-        <li class="text-lg text-#525252"><p class="leading-relaxed">CET-6</p></li>
-        <li class="text-lg text-#525252"><p class="leading-relaxed">Good English reading and writing skills.</p></li>
-      </ul>
-    </section>
+    <article class="mx-auto sm:w-8/12 md:w-144">
+      <section class="py-5">
+        <h2 class="pb-3 text-3xl font-bold text-#525252">WORK EXPERIENCE</h2>
+        <ul class="ml-5 list-disc">
+          <li class="text-base text-#525252 leading-relaxed"><p><b>Ant Group</b>, Senior Front-End Engineer ~ 2018.12 ~ 2023.07</p></li>
+          <li class="text-base text-#525252 leading-relaxed"><p><b>Meituan</b>, FullStack Engineer ~ 2017.08 ~ 2018.12</p></li>
+          <li class="text-base text-#525252 leading-relaxed"><p><b>LeTV</b>, Front-End Engineer — 2015.07 ~ 2017.07</p></li>
+        </ul>
+      </section>
+      <section class="py-5">
+        <h2 class="pb-3 text-3xl font-bold text-#525252">PROJECT EXPERIENCE</h2>
+        <ul class="ml-5 list-disc">
+          <li class="text-base text-#525252 leading-relaxed"><p>Actively involved in designing and developing large-scale interactive React frontend projects</p></li>
+          <li class="text-base text-#525252 leading-relaxed"><p>Familiar with the underlying principles of frameworks like Express, Koa, EggJS</p></li>
+          <li class="text-base text-#525252 leading-relaxed"><p>Contributed to open-source projects include Jest, Orogene</p></li>
+        </ul>
+      </section>
+      <section class="py-5">
+        <h2 class="pb-3 text-3xl font-bold text-#525252">SKILLS</h2>
+        <ul class="flex justify-around">
+          {skills.map((skill) => <li><img src={skill} alt="" width="50px" width="50px" /></li>)}
+        </ul>
+      </section>
+      <section class="py-5">
+        <h2 class="pb-3 text-3xl font-bold text-#525252">EDUCATION BACKGROUND</h2>
+        <p class="text-base text-#525252">Journalism — Bachelor</p>
+        <p class="text-base text-#525252">Hunan Institute of Science and Technology</p>
+        <p class="text-sm text-#525252">2011 ~ 2015</p>
+      </section>
+      <section class="py-5">
+        <h2 class="pb-3 text-3xl font-bold text-#525252">LANGUAGE</h2>
+        <ul class="ml-5 list-disc">
+          <li class="text-base text-#525252 leading-relaxed"><p>Simplied Chinese</p></li>
+          <li class="text-base text-#525252 leading-relaxed"><p>CET-6</p></li>
+          <li class="text-base text-#525252 leading-relaxed"><p>Good English reading and writing skills.</p></li>
+        </ul>
+      </section>
+    </article>
   </HomeLayout>
 </PageLayout>
