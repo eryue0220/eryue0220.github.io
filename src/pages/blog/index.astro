@@ -36,26 +36,28 @@ const posts = (await getCollection('blog'))
 
 <Page header={title}>
   <HomeLayout>
-    <ul class="pl-40 py-20">
-      {
-        Object.keys(posts).map((year) =>
-          <li>
-            <h1 class="text-2xl">{year}</h1>
-            <ul class="list-disc mt-3">
-              {
-                posts[year].map((post: Post) =>
-                  <li class="flex items-center mb-4 ml-8 text-lg">
-                    <p class="pr-3">{formatDate(post.data.date)} <a href={`/blog/${post.slug}`}>{post.data.title}</a></p>
-                    {post.data.lang
-                      ? <p class="border-2 border-dotted border-zinc-600 text-sm">{post.data.lang?.toUpperCase()}</p>
-                      : null}
-                  </li>
-                )
-              }
-            </ul>
-          </li>
-        )
-      }
-    </ul>
+    <article class="mx-auto sm:w-8/12 md:w-144">
+      <ul class="py-20">
+        {
+          Object.keys(posts).map((year) =>
+            <li>
+              <h1 class="text-2xl">{year}</h1>
+              <ul class="list-disc mt-3">
+                {
+                  posts[year].map((post: Post) =>
+                    <li class="flex items-center mb-4 ml-8 text-lg">
+                      <p class="pr-3">{formatDate(post.data.date)} <a href={`/blog/${post.slug}`}>{post.data.title}</a></p>
+                      {post.data.lang
+                        ? <p class="border-2 border-dotted border-zinc-600 text-sm">{post.data.lang?.toUpperCase()}</p>
+                        : null}
+                    </li>
+                  )
+                }
+              </ul>
+            </li>
+          )
+        }
+      </ul>
+    </article>
   </HomeLayout>
 </Page>
