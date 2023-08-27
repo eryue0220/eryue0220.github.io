@@ -2,16 +2,16 @@
 import { medias } from '../constant';
 ---
 
-<article>
-  <h1 class="text-6xl text-center font-bold leading-loose">👋 Hi there~</h1>
-  <h3 class="text-4xl text-center font-semibold leading-loose">Here is Shigang's Blog</h3>
-  <p class="text-2xl text-center leading-loose">I'm a senior Front-End Engineer from China.</p>
-  <p class="text-2xl text-center leading-loose">Formly, I worked in Ant Group and Meituan. </p>
-  <p class="text-2xl text-center leading-loose">
+<article class="flex flex-col mx-auto sm:w-8/12 md:w-144">
+  <h1 class="text-6xl font-bold leading-loose">👋 Hi there~</h1>
+  <h3 class="text-4xl font-semibold leading-loose">Here is Shigang's Blog</h3>
+  <p class="text-2xl leading-loose">I'm a senior Front-End Engineer from China.</p>
+  <p class="text-2xl leading-loose">Formly, I worked in Ant Group and Meituan. </p>
+  <p class="text-2xl leading-loose">
     Currently I focus on projects: <a class="hover:italic font-semibold" href="https://jestjs.io" target="_blank">Jest</a>, 
-    <a class="hover:italic font-semibold" href="https://orogene.dev/" target="_blank">Orogene</a> and etc.
+    <a class="hover:italic font-semibold" href="https://eslint.org/" target="_blank">ESLint</a>.
   </p>
-  <p class="text-2xl text-center leading-loose">And you can find me in the following ways:</p>
+  <p class="text-2xl leading-loose">And you can find me in the following ways:</p>
   <ul class="flex justify-center pt-2">
     {medias.map((media) =>
       <li class="pr-4">
