@@ -11,6 +11,11 @@ module.exports = {
 			'#d4d4d8': '#d4d4d8',
 			'#475569': '#475569',
 		},
+		extend: {
+			width: {
+				144: '30rem',
+			},
+		},
 	},
 	plugins: [
 		require('@tailwindcss/typography'),
