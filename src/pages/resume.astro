@@ -6,13 +6,33 @@ import { SITE_TITLE as title, skills } from '../constant';
 
 <PageLayout header={title}>
   <HomeLayout title={title}>
-    <article class="mx-auto sm:w-8/12 md:w-144">
+    <article class="mx-auto sm:w-9/12 md:w-144">
       <section class="py-5">
         <h2 class="pb-3 text-3xl font-bold text-#525252">WORK EXPERIENCE</h2>
         <ul class="ml-5 list-disc">
-          <li class="text-base text-#525252 leading-relaxed"><p><b>Ant Group</b>, Senior Front-End Engineer ~ 2018.12 ~ 2023.07</p></li>
-          <li class="text-base text-#525252 leading-relaxed"><p><b>Meituan</b>, FullStack Engineer ~ 2017.08 ~ 2018.12</p></li>
-          <li class="text-base text-#525252 leading-relaxed"><p><b>LeTV</b>, Front-End Engineer — 2015.07 ~ 2017.07</p></li>
+          <li class="text-base text-#525252 leading-relaxed">
+            <h2 class="md:text-2xl sm:text-base"><b>Ant Group</b>, Senior Front-End Engineer, 2018.12 ~ 2023.07</h2>
+            <ul class="pl-6">
+              <li class="list-square">Work on the mobile (hybrid) app, which is like a stock finance dashboard data and rich interactaction. Used React, Redux, LESS, Node.js, ESLint, Prettier, Rollup, and TypeScript.</li>
+              <li class="list-square">Work on internal serverless tools, mainly responsible for cross-language calling protocol to support function can be called in different language, and it also help to speed business launch and improve DX. Used React, Babel, TypeScript, and Node.js.</li>
+              <li class="list-square">Help teams  solve complex technical problems, provide relevant solutions and references, and participate in Code Review in the group.</li>
+            </ul>
+          </li>
+          <li class="text-base text-#525252 leading-relaxed mt-2">
+            <h2 class="md:text-2xl sm:text-base"><b>Meituan</b>, Front-End Engineer, 2017.07 ~ 2018.12</h2>
+            <ul class="pl-6">
+              <li class="list-square">Work on internal metrics platform, collect display apps/web metrics, throught Node.js, Redis, Highchart.js, React, and JavaScript.</li>
+              <li class="list-square">Built js sdk library to collect web performance data, help developers find and solve the performance problems.</li>
+              <li class="list-square">Optimize code base and resolve some tech debt.</li>
+            </ul>
+          </li>
+          <li class="text-base text-#525252 leading-relaxed mt-2">
+            <h2 class="md:text-2xl sm:text-base"><b>LeTV</b>, Front-End Engineer, 2015.07 ~ 2017.07</h2>
+            <ul class="pl-6">
+              <li class="list-square">Developed and maintained interactive HTML5 web video pages.</li>
+              <li class="list-square">Participated in formulating front-end engineering research and development specifications, and help the team write standardized code and unify standards through gulp and eslint plugins.</li>
+            </ul>
+          </li>
         </ul>
       </section>
       <section class="py-5">
@@ -20,7 +40,12 @@ import { SITE_TITLE as title, skills } from '../constant';
         <ul class="ml-5 list-disc">
           <li class="text-base text-#525252 leading-relaxed"><p>Actively involved in designing and developing large-scale interactive React frontend projects</p></li>
           <li class="text-base text-#525252 leading-relaxed"><p>Familiar with the underlying principles of frameworks like Express, Koa, EggJS</p></li>
-          <li class="text-base text-#525252 leading-relaxed"><p>Contributed to open-source projects include Jest, Orogene</p></li>
+          <li class="text-base text-#525252 leading-relaxed"><p>Contributed to open-source projects include:</p>
+            <p><a class="font-bold" href="https://github.com/jestjs/jest/pulls?q=author%3Aeryue0220+" target="_blank" referrerpolicy="no-referrer">Jest</a></p>
+            <p><a class="font-bold" href="https://github.com/orogene/orogene/pulls?q=author%3Aeryue0220+" target="_blank" referrerpolicy="no-referrer">orogene</a></p>
+            <p><a class="font-bold" href="https://github.com/web-infra-dev/oxc/pulls?q=author%3Aeryue0220+" target="_blank" referrerpolicy="no-referrer">oxc</a></p>
+          </li>
+          <li>and maybe other tools I will like...</li>
         </ul>
       </section>
       <section class="py-5">
@@ -33,14 +58,14 @@ import { SITE_TITLE as title, skills } from '../constant';
         <h2 class="pb-3 text-3xl font-bold text-#525252">EDUCATION BACKGROUND</h2>
         <p class="text-base text-#525252">Journalism — Bachelor</p>
         <p class="text-base text-#525252">Hunan Institute of Science and Technology</p>
-        <p class="text-sm text-#525252">2011 ~ 2015</p>
+        <p class="text-base text-#525252">2011 ~ 2015</p>
       </section>
       <section class="py-5">
         <h2 class="pb-3 text-3xl font-bold text-#525252">LANGUAGE</h2>
         <ul class="ml-5 list-disc">
-          <li class="text-base text-#525252 leading-relaxed"><p>Simplied Chinese</p></li>
-          <li class="text-base text-#525252 leading-relaxed"><p>CET-6</p></li>
-          <li class="text-base text-#525252 leading-relaxed"><p>Good English reading and writing skills.</p></li>
+          <li class="text-base text-#525252 leading-relaxed"><p>Mardarin (Native)</p></li>
+          <li class="text-base text-#525252 leading-relaxed"><p>IELTS (ongoing)</p></li>
+          <li class="text-base text-#525252 leading-relaxed"><p>English reading and writing skills (Intermediate).</p></li>
         </ul>
       </section>
     </article>
