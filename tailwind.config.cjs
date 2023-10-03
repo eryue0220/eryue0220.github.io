@@ -12,8 +12,12 @@ module.exports = {
 			'#475569': '#475569',
 		},
 		extend: {
+			listStyleType: {
+				square: 'square',
+			},
 			width: {
-				144: '30rem',
+				128: '30rem',
+				144: '44rem',
 			},
 		},
 	},
