@@ -4,6 +4,8 @@ date: 2023.10.15 17:25
 tag: weekly
 ---
 
+# Weekly-42
+
 ## 开源
 
 这周的开源就给 oxc 提交了一个新 [PR](https://github.com/web-infra-dev/oxc/pull/938)，难得的是竟然能够很顺利地就没有在继续和 benchmark 作斗争，很顺利地就合进了 main 分支。果然随着对代码了解程度的增加，以及 Rust 在 Openai 的帮助下，越写越顺手了，代码写起来也比较顺利。在这之外，本周还开了两个新项目，jotai 的 bug 和 opendal 的些迁移相关工作。先说 jotai，一个 react 的 reactive 状态库，代码量虽然不大，但是读起来脑子嗡嗡地，而 bug 的原因作者也给了一个复现的 test case，目前看起来应该是 cache 在某个时刻被 miss 了，导致了某个计算被重复计算了两次，不过因为代码看的太头疼了，暂时没有细看，下周再花些时间看看，具体内容可以看[这里](https://github.com/pmndrs/jotai/issues/2168)。关于 opendal，这周是在给他们做些 NodeJS 测试用例的更新，目前引入了 vitest 来替换掉之前的 Cucumber.js 测试库，同时还升级了下 service_s3.yml。顺利的话下周应该能把 landing 这个 PR，中年人的第一个 Apache PR 下周应该能达成。
