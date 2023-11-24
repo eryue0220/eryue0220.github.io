@@ -1,10 +1,150 @@
 ---
 title: How does Jest run
-date: 2023.08.24 13:30:00
+date: 2023.11.25 01:50:00
 tag: JavaScript Test Framework
-draft: true
 ---
 
-# How does Jest run
+# 单测是如何运行的？
 
-当写业务代码时，对于任何的业务逻辑，完备的软件工程都会要求写单元测试代码来保证业务代码的完备性。以 [Jest](https://jestjs.io) 为例，一个简单的单测例子如下：
+## 前言
+
+写任何的代码时，完备的软件工程都会要求写单元测试代码来保证业务代码的完备性。以 [Jest](https://jestjs.io/) 为例，一个简单的单测例子如下：
+
+```jsx
+// index.test.js
+test('should be pass', () => {
+  expect(1 + 2).toEqual(3);
+});
+
+describe('another test', () => {
+  it('should be failed', () => {
+    expect(1 + 2).toEqual(2);
+  });
+});
+```
+
+若用命令行 `node index.test.js` 运行该文件，由于上述代码中的 `test`、`describe`、`expect` 等几个函数均未定义，直接运行则会导致 `ReferenceError`，实际结果如下，但若执行在命令行上执行 `jest` 则能够顺利执行。
+
+```bash
+test('should be pass', () => {
+^
+
+ReferenceError: test is not defined
+    at Object.<anonymous> (/Users/examples/jest-entry/__tests__/index.test.js:1:1)
+    at Module._compile (node:internal/modules/cjs/loader:1233:14)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1287:10)
+    at Module.load (node:internal/modules/cjs/loader:1091:32)
+    at Module._load (node:internal/modules/cjs/loader:938:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:83:12)
+    at node:internal/main/run_main_module:23:47
+
+Node.js v20.5.0
+```
+
+先说结论，Jest 中，所有的测试代码均不是直接通过 Node 来执行的。而是通过将测试代码装进 `vm` 模块来执行，而 `describe` 、`test` 以及 `it` 等函数则已事先定义好后，注入到全局变量。具体代码可在 [jest-jasmine2](https://github.com/jestjs/jest/blob/7ed802537349ca259e83938d79f2d095d274d576/packages/jest-jasmine2/src/index.ts#L48~%23L77) 中查看。
+
+## TL;DR
+
+具体地来看 Jest 的执行过程主要涵盖三个步骤：
+
+1. 构造测试环境；
+2. 运行测试；
+3. 分析结果；
+
+本文主要关注于前面两点；
+
+### 初始化
+
+构造测试环境相关的代码主要是在 `jest-environment-node` 和 `jest-environment-jsdom` 两个包中，分别用于构建 Node 测试运行环境和浏览器运行环境，具体内容则不再展开，主要用于模拟 Node 和浏览器的相关运行环境，来满足后续断言代码的执行。在测试代码中加上断点后，通过 `node —inspect-brk` 把断点断在可以看到其是将写的测试代码包装在了一个 CommonJS 风格的匿名函数里（下图），这里面 `module` 主要是当前测试代码的元信息，`exports` 对象则是当前模块的导出信息，一般来说都是一个空数组，`__dirname` 和 `__filename` 则分别是当前测试文件所在的详细路径信息，`jest` 对象则是工具函数合集，用于帮助构造测试。在将测试代码加载到执行的 `node:vm` 环境前，Jest 还有一系列的准备工作，包括读取项目中的 `jest.config.js` 配置，构造当前运行项目元信息等，但不在本文的描述重点中，因此不再详细赘述。
+
+```jsx
+({
+ "Object.<anonymous>": function (module, exports, require, __dirname, __filename, jest) {
+    test('should be pass', () => {
+      expect(1 + 2).toEqual(3);
+    });
+
+    describe('another test', () => {
+      it('should be failed', () => {
+        expect(1 + 2).toEqual(2);
+      });
+    });
+  }
+})
+```
+
+### 运行测试
+
+在前面一系列步骤操作完成后，最后自然是运行上述测试代码，并将断言结果反馈出来。在进行测试的时候，因为存在并发和 `watch` 运行模式，本文以最简单的运行模式来探究执行路径。在上述环境和文件均准备完成后，Jest 会分别将其进行加载到当前运行环境中：
+
+```jsx
+const TestEnvironment = await transformer.requireAndTranspileModule(testEnvironment);
+ 
+const testFramework = await transformer.requireAndTranspileModule(
+  process.env.JEST_JASMINE === '1'
+    ? require.resolve('jest-jasmine2')
+    : projectConfig.testRunner,
+  );
+
+// other stuff
+```
+
+在完成了对运行条件的前置准备后，接下来就是运行所写的业务代码了。`testFramework` 这个函数定义在 `jest-jasmine2` 里。而之前所提到的 `test`、`describe` 以及 `expect` 等函数，则在该函数运行时，注入到 environment 的全局变量中，保证断言代码能够正确运行。
+
+```jsx
+result = await testFramework(
+  globalConfig,
+  projectConfig,
+  environment,
+  runtime,
+  path,
+  sendMessageToJest,
+);
+```
+
+具体的注入代码：
+
+```jsx
+// pacakge/jest-jasmine2/src/index.js
+Object.assign(environment.global, jasmineInterface);
+```
+
+除了 `Jasmine` 提供的断言方法，`jest` 也额外扩展了几个断言方法：
+
+```jsx
+// code
+
+environment.global.it = wrapIt(environment.global.it);
+environment.global.xit = wrapIt(environment.global.xit);
+environment.global.fit = wrapIt(environment.global.fit);
+
+// other logic code
+
+environment.global.it.failing = failing;
+environment.global.fit.failing = failing;
+environment.global.xit.failing = failing;
+
+environment.global.test = environment.global.it;
+environment.global.it.only = environment.global.fit;
+environment.global.it.todo = env.todo;
+environment.global.it.skip = environment.global.xit;
+environment.global.xtest = environment.global.xit;
+environment.global.describe.skip = environment.global.xdescribe;
+environment.global.describe.only = environment.global.fdescribe;
+```
+
+在拿到测试结果后，后续主要就是根据 testFramework 返回的结果来将测试结果可视化：
+
+```jsx
+// result 主要内容涵盖
+{
+  numPassingTests: number, // 通过的测试
+  numFailingTests: number, // 失败的测试
+  numPendingTests: number, // 未完成的测试
+  numTodoTests: number,    // 未进行的测试
+  path: string, // 所执行的测试路径
+  // other property
+}
+```
+
+以上，就是一段测试代码大致的执行逻辑。
