@@ -1,0 +1,69 @@
+---
+title: Weekly-53
+date: 2023.12.31 23:03
+tag: weekly
+lang: En
+---
+
+# Weekly-53
+
+## The Summary of 2023
+
+Today it’s the last day of 2023.  Last post in this year. It’s a long time since the last weekly blog. At the beginning of this year, I hoped I can write a post every week to record what I did in that week and wrote some tech posts. However, this year, I just wrote some posts and one tech blog. Beside that, in 2023, there are some changes about my self, the biggest part I think is that I resigned from Ant Group. I felt dead tired, stressed and frustrated. I can’t stay there any more, maybe someone told me it’s a pity. but I felt that good since I left then, and currently I think it was a good decision.
+
+### The Good Part in this year…
+
+- Contribute to the OSS Projects
+  - Jest
+  - oxc
+  - orogene
+  - unplugin-stylex
+  - opendal
+  and others
+
+- Learned to swim
+  Finally I learned to swim
+
+- Learned and improved English
+  - Started to writing post in English
+  - Learn in Duolingo everyday
+      ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/2140b8ba-3c0b-4b3e-9de0-a42b73b287e5/2378a201-3859-4f41-86f1-5674486c295d/Untitled.png)
+
+- Start to listening Books and Podcast
+  It’s really good things that I tried in 2023. I really enjoyed listening many variety of contents, maybe they shared experience or knowledge, even their routine. And especially I really like to listen when I take a shower.
+
+- Go to bed early and get up early.
+- Reading one book per month at least.
+
+### The Not Good…
+
+- Too distracting. I alway switched my context, in some degree it’s bad for myself, which means I need to spend more time to engage a new project from another project, although it pushed myself to learn more new thing, for me personally, I haven't gained much accumulation.
+- Learn to Drive. I planned to get a driver’s license since 2022. But it’s still uncompleted in this year.
+- Memorizing English Words. Unfortunately, in 2023, this habit was not maintained.
+- Accounting. Unfortunately, in 2023, this habit was not maintained too.
+
+That is my 2023, it’s not good but also not bad.
+
+## In 2024
+
+- More Focus
+  - I need to manage my energy and attention to prevent make myself burn out. In Tech I think will focus on three areas and these following repos:
+    - Rust
+      - oxc
+      - rolldown-rs
+      - lightingcss
+      - orogene
+    - FrontEnd and Framework
+      - Astro
+      - stylex / unplugin-stylex
+      - Jest / vitest
+      - Nest.js
+    - Learning K8S / AWS / Docker
+- Improve my verbal English
+- Accounting.
+- Start record my time.
+- Keep Reading
+
+But now it’s my just thought in my mind. The more detail and plan I will update in next I hope. 
+
+2023 Bye.
