@@ -4,7 +4,6 @@ import Page from '@/layouts/page.astro';
 import HomeLayout from '@/layouts/index.astro';
 import { SITE_TITLE as title } from '@/constant';
 import { formatDate } from '@/utils';
-import './index.less';
 
 type Post = CollectionEntry<'weekly'>;
 
@@ -79,7 +78,7 @@ const current = new Date().getFullYear();
                       <p class="pr-3">{formatDate(post.data.date)} {post.data.title}</p>
                     </a>
                     {post.data.lang
-                      ? <p class="border-2 border-dotted border-zinc-600 text-sm">{post.data.lang?.toUpperCase()}</p>
+                      ? <p class="border-2 border-dotted border-zinc-600 text-sm">{(post.data.lang)?.toUpperCase?.()}</p>
                       : null}
                   </li>
                 )
