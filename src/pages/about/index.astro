@@ -21,46 +21,60 @@ import work from '../../../public/config/work.json';
   <HomeLayout title={title}>
     <div class="mx-auto sm:w-9/12 md:w-144">
       <!-- Experience -->
-      <section class="py-5">
-        <h2 class="pb-6 text-3xl font-bold text-#525252">{work.title}</h2>
-        <Work workExperience={work.content} client:visible/>
-      </section>
+      {work && work?.content?.length ? (
+        <section class="py-5">
+          <h2 class="pb-6 text-3xl font-bold text-#525252">{work.title}</h2>
+          <Work workExperience={work.content} client:visible />
+        </section>
+      ) : null}
 
       <!-- Project -->
-      <section class="pb-5">
-        <h2 class="pb-3 text-3xl font-bold text-#525252">{project.title}</h2>
-        <Project projects={project.content} />
-      </section>
+      {project && project?.content?.length ? (
+        <section class="pb-5">
+          <h2 class="pb-3 text-3xl font-bold text-#525252">{project.title}</h2>
+          <Project projects={project.content} />
+        </section>
+      ) : null}
 
       <!-- contribution -->
-      <section class="py-10">
-        <h2 class="mb-10 text-3xl font-bold text-#525252">{oss.title}</h2>
-        <Skill skills={oss.content} />
-      </section>
+      {oss && oss?.content?.length ? (
+        <section class="py-10">
+          <h2 class="mb-10 text-3xl font-bold text-#525252">{oss.title}</h2>
+          <Skill skills={oss.content} />
+        </section>
+      ) : null}
 
       <!-- Know -->
-      <section class="py-10">
-        <h2 class="mb-10 text-3xl font-bold text-#525252">{skill.title}</h2>
-        <Skill skills={skill.content} />
-      </section>
+      {skill && skill?.content?.length ? (
+        <section class="py-10">
+          <h2 class="mb-10 text-3xl font-bold text-#525252">{skill.title}</h2>
+          <Skill skills={skill.content} client:visible />
+        </section>
+      ) : null}
 
       <!-- Learn -->
-      <section class="py-10">
-        <h2 class="mb-10 text-3xl font-bold text-#525252">{learn.title}</h2>
-        <Skill skills={learn.content} />
-      </section>
+      {learn && learn?.content?.length ? (
+        <section class="py-10">
+          <h2 class="mb-10 text-3xl font-bold text-#525252">{learn.title}</h2>
+          <Skill skills={learn.content} client:visible />
+        </section>
+      ) : null}
 
       <!-- Education -->
-      <section class="pt-16 pb-8">
-        <h2 class="pb-3 text-3xl font-bold text-#525252">{education.title}</h2>
-        <Education educations={education.content} />
-      </section>
+      {education && education?.content?.length ? (
+        <section class="py-8">
+          <h2 class="pb-3 text-3xl font-bold text-#525252">{education.title}</h2>
+          <Education educations={education.content} />
+        </section>
+      ) : null}
 
       <!-- Language -->
-      <section class="py-8">
-        <h2 class="pb-3 text-3xl font-bold text-#525252">{language.title}</h2>
-        <Language languages={language.content} />
-      </section>
+      {language && language?.content?.length ? (
+        <section class="py-8">
+          <h2 class="pb-3 text-3xl font-bold text-#525252">{language.title}</h2>
+          <Language languages={language.content} />
+        </section>
+      ) : null}
     </div>
   </HomeLayout>
 </PageLayout>

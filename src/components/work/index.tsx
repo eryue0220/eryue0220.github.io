@@ -14,9 +14,9 @@ interface Props {
   workExperience: WorkExperienceProp[];
 }
 
-export default function Work(props: Props) {
+export default function Work(props: Props = {} as Props) {
   const { workExperience, initial = 0 } = props;
-  const companyNames = workExperience.map((exp) => exp.name);
+  const companyNames = workExperience?.map?.((exp) => exp.name);
   const [current, setCurrent] = useState(initial);
 
   return (
