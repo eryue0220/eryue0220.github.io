@@ -1,7 +1,7 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content';
-import Post from '../../layouts/post.astro';
-import { formatDate } from '../../utils';
+import { type CollectionEntry, getCollection } from 'astro:content';
+import Post from '@/layouts/post.astro';
+import { formatDate } from '@/utils';
 
 export async function getStaticPaths() {
   const posts = await getCollection('weekly');

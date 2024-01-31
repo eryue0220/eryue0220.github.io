@@ -1,0 +1,65 @@
+{
+  "title": "Know",
+  "content": [
+    {
+      "name": "JavaScript",
+      "score": 0,
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-plain.svg"
+    },
+    {
+      "name": "TypeScript",
+      "score": 0,
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg"
+    },
+    {
+      "name": "NodeJS",
+      "score": 0,
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg"
+    },
+    {
+      "name": "React",
+      "score": 0,
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original-wordmark.svg"
+    },
+    {
+      "name": "Redux",
+      "score": 0,
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg"
+    },
+    {
+      "name": "Next.js",
+      "score": 0,
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg"
+    },
+    {
+      "name": "Jest",
+      "score": 0,
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg"
+    },
+    {
+      "name": "CSS",
+      "score": 0,
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-plain.svg"
+    },
+    {
+      "name": "Babel",
+      "score": 0,
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/babel/babel-original.svg"
+    },
+    {
+      "name": "Nest.js",
+      "score": 0,
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-plain.svg"
+    },
+    {
+      "name": "Rust",
+      "score": 0,
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/rust/rust-plain.svg"
+    },
+    {
+      "name": "Git",
+      "score": 0,
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"
+    }
+  ]
+}

@@ -1,0 +1,48 @@
+{
+  "title": "Worked at",
+  "content": [
+    {
+      "name": "Freelancer",
+      "link": "",
+      "title": "Full Stack Engineer",
+      "date": "2023.07 ~ Present",
+      "content": [
+        "Refactored Web3 Finance Project, designed front-end architecture and optimize codebase, using Next.js, WebSocket and zustand.",
+        "Built AI Web Project from sketch, using AWS lambda, dynamodb, Next.js, Nest.js and zustand."
+      ]
+    },
+    {
+      "name": "Ant Group",
+      "link": "https://www.antgroup.com/",
+      "title": "Senior FrontEnd Engineer",
+      "date": "2018.12 ~ 2023.07",
+      "content": [
+        "Worked on the mobile (hybrid) app, which is like a stock finance dashboard data and rich interaction.",
+        "Worked on internal serverless tools, mainly responsible for cross-language calling protocol to support function can be called in different language, and it also help to speed business launch and improve DX.",
+        "Helped teams solve complex technical problems, provide relevant solutions and references, and participate in Code Review in the group."
+      ]
+    },
+    {
+      "name": "MeituanDianping",
+      "link": "https://www.meituan.com/",
+      "title": "FrontEnd Engineer",
+      "date": "2017.07 ~ 2018.12",
+      "content": [
+        "Worked on internal metrics platform, support api gateway to query all kinds of metrics data to display on dashboard, using Koa.js, Redis and pm2",
+        "Built js sdk library to collect app/web data, including performance, errors or other metrics, which target is to help developers find and solve problems.",
+        "Optimized codebase and resolved some tech debt."
+      ]
+    },
+    {
+      "name": "LETV",
+      "link": "https://www.le.com/",
+      "title": "FrontEnd Engineer",
+      "date": "2015.06 ~ 2017.07",
+      "content": [
+        "Developed and maintained interactive HTML5 web video pages, using jQuery and Less.",
+        "Cooperated with native developers, to built an Mac App that included video played and downloaded using React, Redux and Less.",
+        "Participated in formulating front-end engineering research and development specifications, and help the team write standardized code and unify standards through gulp and eslint plugins."
+      ]
+    }
+  ]
+}

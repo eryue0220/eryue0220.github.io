@@ -1,0 +1,25 @@
+{
+  "title": "Learning",
+  "content": [
+    {
+      "name": "PostgreSQL",
+      "score": 0,
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-plain.svg"
+    },
+    {
+      "name": "Golang",
+      "score": 0,
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg"
+    },
+    {
+      "name": "Docker",
+      "score": 0,
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
+    },
+    {
+      "name": "kubernetes",
+      "score": 0,
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg"
+    }
+  ]
+}

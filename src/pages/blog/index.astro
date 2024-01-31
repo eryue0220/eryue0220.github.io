@@ -1,8 +1,8 @@
 ---
-import { CollectionEntry, getCollection } from 'astro:content';
-import Page from '../../layouts/page.astro';
-import HomeLayout from '../../layouts/index.astro';
-import { SITE_TITLE as title } from '../../constant';
+import { type CollectionEntry, getCollection } from 'astro:content';
+import Page from '@/layouts/page.astro';
+import HomeLayout from '@/layouts/index.astro';
+import { SITE_TITLE as title } from '@/constant';
 
 type Post = CollectionEntry<'blog'>;
 
@@ -32,31 +32,67 @@ const posts = (await getCollection('blog'))
     acc[cur.data.pubYear].push(cur);
     return acc;
   }, {} as Record<string, Post[]>);
+
+const postsKeys = Object.keys(posts).sort((a, b) => Number(b) - Number(a));
+const isOnlyOne = postsKeys.length === 1;
+const current = new Date().getFullYear();
 ---
+
+<script>
+  const titles = document.querySelectorAll('h1.year-title');
+  titles.forEach((title) => {
+    title.addEventListener('click', (evt) => {
+      const { target } = evt;
+      const posts = (target as any).nextElementSibling;
+
+      if (posts && Array.from(posts.classList).includes('block')) {
+        posts.classList.replace('block', 'hidden');
+      } else {
+        posts.classList.replace('hidden', 'block');
+      }
+
+      if (Array.from((target as HTMLElement).classList).includes('year-title-expand')) {
+        (target as HTMLElement).classList.remove('year-title-expand');
+        (target as HTMLElement).classList.remove('rotate-z-90');
+      } else {
+        (target as HTMLElement).classList.add('year-title-expand');
+        (target as HTMLElement).classList.add('rotate-z-90');
+      }
+    });
+  });
+</script>
 
 <Page header={title}>
   <HomeLayout>
     <article class="mx-auto sm:w-8/12 md:w-144">
       <ul class="py-20">
-        {
-          Object.keys(posts).sort((a, b) => Number(b) - Number(a)).map((year) =>
-            <li>
-              <h1 class="text-2xl">{year}</h1>
-              <ul class="list-disc mt-3">
-                {
-                  posts[year].map((post: Post) =>
-                    <li class="flex items-center mb-4 ml-8 text-lg">
-                      <p class="pr-3">{formatDate(post.data.date)} <a href={`/blog/${post.slug}`}>{post.data.title}</a></p>
-                      {post.data.lang
-                        ? <p class="border-2 border-dotted border-zinc-600 text-sm">{post.data.lang?.toUpperCase()}</p>
-                        : null}
-                    </li>
-                  )
-                }
-              </ul>
-            </li>
-          )
-        }
+        {postsKeys.map((year, index) =>
+          <li class={index === 0 ? '' : 'mt-10'}>
+            <h1 class={`
+              pl-5
+              arrow
+              text-2xl
+              ${isOnlyOne ? '' : 'year-title cursor-pointer'}
+              ${current === Number(year) ? 'year-title-expand rotate-z-90' : ''}
+            `}>
+              {year}
+            </h1>
+            <ul class={`list-disc mt-3 ${current === Number(year) || isOnlyOne ? 'block' : 'hidden'}`}>
+              {
+                posts[year].map((post: Post) =>
+                  <li class="flex items-center mb-4 ml-8 text-lg">
+                    <a href={`/blog/${post.slug}`}>
+                      <p class="pr-3">{formatDate(post.data.date)} {post.data.title}</p>
+                    </a>
+                    {post.data.lang
+                      ? <p class="border-2 border-dotted border-zinc-600 text-sm">{post.data.lang?.toUpperCase()}</p>
+                      : null}
+                  </li>
+                )
+              }
+            </ul>
+          </li>
+        )}
       </ul>
     </article>
   </HomeLayout>

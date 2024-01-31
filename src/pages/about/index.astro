@@ -1,0 +1,66 @@
+---
+import PageLayout from '@/layouts/page.astro';
+import HomeLayout from '@/layouts/index.astro';
+import Education from '@/components/education';
+import Language from '@/components/language';
+import Work from '@/components/work';
+import Project from '@/components/project';
+import Skill from '@/components/skill';
+import { SITE_TITLE as title } from '@/constant';
+
+import education from '../../../public/config/education.json';
+import language from '../../../public/config/language.json';
+import learn from '../../../public/config/learn.json';
+import oss from '../../../public/config/oss.json';
+import project from '../../../public/config/project.json';
+import skill from '../../../public/config/skill.json';
+import work from '../../../public/config/work.json';
+---
+
+<PageLayout header={title}>
+  <HomeLayout title={title}>
+    <div class="mx-auto sm:w-9/12 md:w-144">
+      <!-- Experience -->
+      <section class="py-5">
+        <h2 class="pb-6 text-3xl font-bold text-#525252">{work.title}</h2>
+        <Work workExperience={work.content} client:visible/>
+      </section>
+
+      <!-- Project -->
+      <section class="pb-5">
+        <h2 class="pb-3 text-3xl font-bold text-#525252">{project.title}</h2>
+        <Project projects={project.content} />
+      </section>
+
+      <!-- contribution -->
+      <section class="py-10">
+        <h2 class="mb-10 text-3xl font-bold text-#525252">{oss.title}</h2>
+        <Skill skills={oss.content} />
+      </section>
+
+      <!-- Know -->
+      <section class="py-10">
+        <h2 class="mb-10 text-3xl font-bold text-#525252">{skill.title}</h2>
+        <Skill skills={skill.content} />
+      </section>
+
+      <!-- Learn -->
+      <section class="py-10">
+        <h2 class="mb-10 text-3xl font-bold text-#525252">{learn.title}</h2>
+        <Skill skills={learn.content} />
+      </section>
+
+      <!-- Education -->
+      <section class="pt-16 pb-8">
+        <h2 class="pb-3 text-3xl font-bold text-#525252">{education.title}</h2>
+        <Education educations={education.content} />
+      </section>
+
+      <!-- Language -->
+      <section class="py-8">
+        <h2 class="pb-3 text-3xl font-bold text-#525252">{language.title}</h2>
+        <Language languages={language.content} />
+      </section>
+    </div>
+  </HomeLayout>
+</PageLayout>
