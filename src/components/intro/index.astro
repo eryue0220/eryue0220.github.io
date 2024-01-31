@@ -1,0 +1,23 @@
+---
+import { medias } from '@/constant';
+---
+
+<article class="flex flex-col mx-auto">
+  <h1 class="text-2xl leading-loose">👋 Hi, here is</h1>
+  <h3 class="mt-14 text-6xl font-semibold leading-snug">Shigang's Blog.</h3>
+  <h3 class="mb-14 text-6xl font-semibold leading-snug text-gray-300">I build things for the web.</h3>
+  <p class="text-xl leading-loose">I'm a full stack Engineer from China.</p>
+  <p class="text-xl leading-loose">Previously, I worked in Ant Group and Meituan.</p>
+  <p class="text-xl leading-loose">I have more than 8 years experience in building web, most of using React.js and Koa.js.</p>
+  <p class="text-xl leading-loose">
+    Currently I am focused on becoming a more professional full stack engineer.
+  </p>
+  <p class="text-xl leading-loose">And you can find me in the following ways:</p>
+  <ul class="flex pt-2">
+    {medias.map((media) =>
+      <li class="pr-4">
+        <a class="underline text-xl" href={media.link} target="_blank">{media.name}</a>
+      </li>
+    )}
+  </ul>
+</article>

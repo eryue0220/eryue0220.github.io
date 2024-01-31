@@ -1,0 +1,24 @@
+---
+import { paths } from '@/constant';
+
+function isMatch(route: string): boolean {
+  const { pathname } = Astro.url;
+  if (route === '/') return route === pathname;
+  return pathname.includes(route);
+}
+---
+
+<nav class="flex py-10">
+  <ul class="flex mx-auto">
+    {paths.map((path) =>
+      <li>
+        <a
+          class={`mx-6 sm:text-sm md:text-xl ${isMatch(path.route) ? 'text-#F9CB81 font-bold' : 'text-zinc-700'}`}
+          href={path.route}
+        >
+          {path.name}
+        </a>
+      </li>
+    )}
+  </ul>
+</nav>

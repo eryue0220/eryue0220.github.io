@@ -25,3 +25,22 @@ body {
     padding-right: 0
   }
 }
+
+.arrow {
+  position: relative;
+
+  &::before {
+    content: "▹";
+    position: absolute;
+    left: 0;
+    font-size: 14px;
+    font-weight: bold;
+    color: #f59e0b;
+  }
+
+  &.rotate-z-90 {
+    &::before {
+      transform: rotateZ(90deg);
+    }
+  }
+}

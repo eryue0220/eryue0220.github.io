@@ -1,0 +1,25 @@
+{
+  "title": "Contributing",
+  "content": [
+    {
+      "name": "Biome",
+      "link": "https://github.com/biomejs/biome",
+      "logo": "https://raw.githubusercontent.com/biomejs/biome/main/website/public/img/logo-avatar.png"
+    },
+    {
+      "name": "Deno",
+      "link": "https://github.com/denoland/deno_std",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/denojs/denojs-original.svg"
+    },
+    {
+      "name": "Jest",
+      "link": "https://github.com/jestjs/jest",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/jest/jest-plain.svg"
+    },
+    {
+      "name": "Oxc",
+      "link": "https://github.com/oxc-project/oxc",
+      "logo": "https://raw.githubusercontent.com/oxc-project/oxc-assets/main/logo-round-min.png"
+    }
+  ]
+}
