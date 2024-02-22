@@ -49,7 +49,7 @@
     {
       "name": "Nest.js",
       "score": 60,
-      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-plain.svg"
+      "logo": "https://raw.githubusercontent.com/devicons/devicon/v2.16.0/icons/nestjs/nestjs-original.svg"
     },
     {
       "name": "Rust",
