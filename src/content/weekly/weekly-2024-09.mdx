@@ -1,0 +1,27 @@
+---
+title: Weekly-09
+date: 2024-02-28 23:45:06
+tag: weekly
+---
+
+# 2024.02
+
+这个月是生日的月份，也是生病的月份。咳嗽好了又感冒，感冒又咳嗽。反反复复折腾了一个月，终于在这个月快结束的时候有些恢复了。这个月基本都在摆烂了。也趁着这段时间，把碧蓝航线玩通关了，剧情实在是太单一了，除了打怪还有些激情，剧情真是越看就越困。
+
+## 开源
+
+这个月 STRKN 的开源空头我就没拿到，都不敢说自己是在做开源的。看了下要求，去年给 Jest 的贡献应该是能到 github 前 5000 的仓库了，但是估计是因为扫的是 contribution 的列表。而我离最低要求还差一个 PR。只能是安慰自己继续努力。
+
+前面也说了，因为这个月生病 + 放假（摆烂），所以也没怎么好好弄。首先还是日常给 oxc 继续贡献 Jest 相关的 Lint 规则：[oxc#2358](https://github.com/oxc-project/oxc/pull/2358)，已经快成为我的 github 刷贡献的常用库，今年的目标是把 `eslint-plugin-jest` 上的库都搬完吧。不过说到这个，Biome 的 `lint/noUselessEscape` 拖了好久也没写完，争取在回北京之前把这个 PR merge 了。很大原因是相较于 oxc 的易于上手，biome 的代码自己读起来只有头疼，不过也和不熟悉有很大关系吧。不知道再写多两个规则会不会好些。至少对代码仓库应该是要更熟悉了些。
+
+另外一个是给 deno_std 贡献了几个 expect 相关的 api，[deno_std#4289](https://github.com/denoland/deno_std/pull/4286) 和 [deno_std#4412](https://github.com/denoland/deno_std/pull/4412)。这个也给自己题型一下，虽然这个 deno_std 的标准库代码可能写起来比较舒服，但是还是时刻需要让自己多思考，避免水 PR。另外下个月打算回去给 Jest 贡献一些代码，也算是还债了吧。最近给 expect 和之前给 vitest 的贡献，从 Jest 上薅走了好多代码。
+
+以及是最后几乎重写了一下 [unplugin-stylex](https://github.com/eryue0220/unplugin-stylex) 的构建逻辑，踩了很多兼容适配的坑。完善了下相关的 case。下个月计划支持 astro 和 SSR 的相关构建，以及考虑看发布到 jsr 上。
+
+## 读书
+
+这个月读了一本 《Docker 技术入门与实战》，整体还不错。算是对 Docker 有了一个浅影响，之前很多时候都是用到了就去百度，没有系统地学习过。这本书还是有些收获的，起码算是对 Docker 入门了。接下来计划再重新读一下 《Rust Atomics and Locks》，之前只是草草地读了一下。没有看得很进去。
+
+## 英语
+
+最近都在玩 duolingo，听力已经荒废了好久了。这周总算是开始了，Keep going。
