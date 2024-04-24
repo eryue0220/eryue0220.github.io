@@ -63,8 +63,8 @@ import work from '../../../public/config/work.json';
       <!-- Education -->
       {education && education?.content?.length ? (
         <section class="py-8">
-          <h2 class="pb-3 text-3xl font-bold text-#525252">{education.title}</h2>
-          <Education educations={education.content} />
+          <h2 class="pb-3 text-3xl font-bold text-#525252">{education?.title}</h2>
+          <Education educations={education?.content || []} />
         </section>
       ) : null}
 
