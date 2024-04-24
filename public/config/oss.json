@@ -19,7 +19,7 @@
     {
       "name": "Oxc",
       "link": "https://github.com/oxc-project/oxc",
-      "logo": "https://raw.githubusercontent.com/oxc-project/oxc-assets/main/logo-round-min.png"
+      "logo": "/images/oxcjs.png"
     }
   ]
 }
