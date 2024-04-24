@@ -4,7 +4,7 @@
     {
       "name": "Biome",
       "link": "https://github.com/biomejs/biome",
-      "logo": "https://raw.githubusercontent.com/biomejs/biome/main/website/public/img/logo-avatar.png"
+      "logo": "../../public/images/biomejs.png"
     },
     {
       "name": "Deno",
