@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React from 'react';
 
 interface WorkExperienceProp {
   name: string;
@@ -15,8 +15,10 @@ interface Props {
 }
 
 export default function Work(props: Props = {} as Props) {
-  const { workExperience, initial = 0 } = props;
-  const companyNames = workExperience?.map?.((exp) => exp.name);
+  console.log(React);
+  const { useState } = React;
+  const { workExperience = [], initial = 0 } = props;
+  const companyNames = (workExperience || [])?.map?.((exp) => exp.name);
   const [current, setCurrent] = useState(initial);
 
   return (
@@ -33,7 +35,7 @@ export default function Work(props: Props = {} as Props) {
         )}
       </ul>
       <ul className="w-136 ml-10">
-        {workExperience.map((exp, idx) =>
+        {workExperience?.map?.((exp, idx) =>
           <li
             key={exp.name}
             className={`${idx === current ? 'block' : 'hidden'}`}
