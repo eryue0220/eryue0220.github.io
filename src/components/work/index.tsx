@@ -15,7 +15,6 @@ interface Props {
 }
 
 export default function Work(props: Props = {} as Props) {
-  console.log(React);
   const { useState } = React;
   const { workExperience = [], initial = 0 } = props;
   const companyNames = (workExperience || [])?.map?.((exp) => exp.name);
