@@ -5,5 +5,5 @@ export const paths = [
   { route: '/', name: 'Home' },
   { route: '/about', name: 'About' },
   { route: '/blog', name: 'Blog' },
-  { route: '/weekly', name: 'Weekly' },
+  // { route: '/weekly', name: 'Weekly' },
 ];
