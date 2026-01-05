@@ -26,7 +26,7 @@ export default function Work(props: Props = {} as Props) {
         {companyNames.map((company, idx) =>
           <li
             key={company}
-            className={`flex items-center pl-5 h-12 cursor-pointer border-l-2 ${current === idx ? 'text-#F9CB81 font-bold border-#F9CB81' : 'border-l-gray-200'} border-solid`}
+            className={`flex items-center pl-5 h-12 cursor-pointer border-l-2 ${current === idx ? 'text-[#F9CB81] font-bold border-[#F9CB81]' : 'border-l-gray-200'} border-solid`}
             onClick={() => setCurrent(idx)}
           >
             {company}
@@ -43,7 +43,7 @@ export default function Work(props: Props = {} as Props) {
               <span className="font-bold text-xl">{exp.title}</span>&nbsp;
               {exp.link
                 ? <a
-                    className="font-bold text-xl text-#F9CB81"
+                    className="font-bold text-xl text-[#F9CB81]"
                     href={exp.link}
                     target='_blank'
                     rel='noreferrer'
@@ -56,7 +56,7 @@ export default function Work(props: Props = {} as Props) {
             <p className="text-zinc-600 text-sm mb-4">{exp.date}</p>
             <ul>
               {exp.content.map((content) =>
-                <li className="mb-3 pl-5 arrow">{content}</li>
+                <li key={`${exp.name}-${content}`} className="mb-3 pl-5 arrow">{content}</li>
               )}
             </ul>
           </li>

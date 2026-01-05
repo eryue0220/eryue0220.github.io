@@ -1,8 +1,8 @@
 import { defineConfig } from 'astro/config';
 import mdx from '@astrojs/mdx';
-import tailwind from '@astrojs/tailwind';
 import react from '@astrojs/react';
 import remarkToc from 'remark-toc';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
@@ -21,9 +21,12 @@ export default defineConfig({
         theme: 'dracula'
       },
       remarkPlugins: [remarkToc],
+      remarkRehype: { footnoteLabel: 'Footnotes' },
       gfm: false
     }),
-    tailwind(),
   ],
+  vite: {
+    plugins: [tailwindcss()],
+  },
   site: 'https://eryue0220.github.io/'
 });

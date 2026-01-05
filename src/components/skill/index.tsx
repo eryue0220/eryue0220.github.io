@@ -30,13 +30,14 @@ export default function Skill({ skills }: Props) {
     <ul className="grid grid-cols-4 gap-8">
       {
         techs.map((skill) => skill.link ? (
-          <li className="cursor-pointer">
+          <li key={skill.name} className="cursor-pointer">
             <a href={skill.link} target="_href" rel="noreferrer">
               <img src={skill.logo} alt={skill.name} width="50px" height="50px" />
             </a>
           </li>
         ) : (
           <li
+            key={skill.name}
             className="relative"
             onMouseEnter={() => onMouseEvent(skill)}
             onMouseLeave={() => onMouseEvent(skill)}
