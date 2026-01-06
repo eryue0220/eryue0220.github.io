@@ -57,10 +57,10 @@ const current = new Date().getFullYear();
 
 <Page header={title}>
   <HomeLayout>
-    <article class="mx-auto sm:w-8/12 md:w-144">
+    <article class="mx-auto sm:w-8/12 md:w-xl">
       <ul class="post-list pt-20 pb-10">
-        {postsKeys.map((year, index) =>
-          <li class={index === 0 ? '' : 'mt-10'}>
+        {postsKeys.map((year) =>
+          <li class="mt-10 first:mt-0">
             <h1 class={`
               pl-5
               arrow

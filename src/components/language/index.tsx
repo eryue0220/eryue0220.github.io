@@ -11,7 +11,7 @@ export default function Language({ languages }: Props) {
   return (
     <ul>
       {languages.map((lang) =>
-        <li className="arrow pl-5 text-base text-#525252 leading-relaxed">
+        <li key={lang.name} className="arrow pl-5 text-base text-[#525252] leading-relaxed">
           <p>{lang.name} ({lang.degree})</p>
         </li>
       )}

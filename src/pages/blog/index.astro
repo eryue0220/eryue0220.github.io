@@ -1,7 +1,7 @@
 ---
 import { type CollectionEntry, getCollection } from 'astro:content';
 import Page from '@/layouts/page.astro';
-import HomeLayout from '@/layouts/index.astro';
+import BlogLayout from '@/layouts/blog.astro';
 import { SITE_TITLE as title } from '@/constant';
 
 type Post = CollectionEntry<'blog'>;
@@ -63,11 +63,11 @@ const current = new Date().getFullYear();
 </script>
 
 <Page header={title}>
-  <HomeLayout>
-    <article class="mx-auto sm:w-8/12 md:w-144">
+  <BlogLayout>
+    <article class="mx-auto sm:w-8/12 md:w-xl">
       <ul class="py-20">
-        {postsKeys.map((year, index) =>
-          <li class={index === 0 ? '' : 'mt-10'}>
+        {postsKeys.map((year) =>
+          <li class="mt-10 first:mt-0">
             <h1 class={`
               pl-5
               arrow
@@ -95,5 +95,5 @@ const current = new Date().getFullYear();
         )}
       </ul>
     </article>
-  </HomeLayout>
+  </BlogLayout>
 </Page>
