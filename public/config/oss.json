@@ -2,11 +2,6 @@
   "title": "Contributing to",
   "content": [
     {
-      "name": "Biome",
-      "link": "https://github.com/biomejs/biome",
-      "logo": "/images/biomejs.png"
-    },
-    {
       "name": "Deno",
       "link": "https://github.com/denoland/deno_std",
       "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/denojs/denojs-original.svg"
@@ -20,6 +15,10 @@
       "name": "Oxc",
       "link": "https://github.com/oxc-project/oxc",
       "logo": "/images/oxcjs.png"
+    },
+    {
+      "name": "npmx.dev",
+      "link": "https://github.com/npmx-dev/npmx.dev"
     }
   ]
 }

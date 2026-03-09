@@ -4,7 +4,7 @@ import Score from './score';
 
 interface Skill {
   name: string;
-  logo: string;
+  logo?: string;
   link?: string;
   show?: boolean;
   score?: number;
@@ -32,7 +32,7 @@ export default function Skill({ skills }: Props) {
         techs.map((skill) => skill.link ? (
           <li key={skill.name} className="cursor-pointer">
             <a href={skill.link} target="_href" rel="noreferrer">
-              <img src={skill.logo} alt={skill.name} width="50px" height="50px" />
+              <img src={skill.logo ?? 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg'} alt={skill.name} width="50px" height="50px" />
             </a>
           </li>
         ) : (
@@ -42,8 +42,8 @@ export default function Skill({ skills }: Props) {
             onMouseEnter={() => onMouseEvent(skill)}
             onMouseLeave={() => onMouseEvent(skill)}
           >
-            <img src={skill.logo} alt={skill.name} width="50px" height="50px" />
-            <Score score={skill.score} show={skill.show} />
+            <img src={skill.logo ?? 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg'} alt={skill.name} width="50px" height="50px" />
+              <Score name={skill.name} show={!skill.start && skill.show} />
             <Learn start={skill.start} progress={skill.progress} show={skill.show} />
           </li>
         ))

@@ -8,6 +8,12 @@
       "progress": "40%"
     },
     {
+      "name": "Rust",
+      "logo": "https://www.rust-lang.org/static/images/rust-logo-blk.svg",
+      "start": "2023",
+      "progress": "40%"
+    },
+    {
       "name": "Docker",
       "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
       "start": "2023",
@@ -17,13 +23,7 @@
       "name": "PostgreSQL",
       "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-plain.svg",
       "start": "2024",
-      "progress": "0%"
-    },
-    {
-      "name": "kubernetes",
-      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg",
-      "start": "2024",
-      "progress": "0%"
+      "progress": "20%"
     }
   ]
 }
