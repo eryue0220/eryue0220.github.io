@@ -2,13 +2,24 @@
   "title": "Worked at",
   "content": [
     {
-      "name": "Freelancer",
+      "name": "Contractor",
       "link": "",
       "title": "Full Stack Engineer",
-      "date": "2023.07 ~ Present",
+      "date": "2024.10 ~ Present",
       "content": [
-        "Refactored Web3 Finance Project, designed front-end architecture and optimize codebase, using Next.js, WebSocket and zustand.",
-        "Built AI Web Project from sketch, using AWS lambda, dynamodb, Next.js, Nest.js and zustand."
+        "Designed and implemented backend services based on Supabase, Drizzle, AWS Lambda, and Cloudflare",
+        "Built high-performance front-end applications using Next.js, React"
+      ]
+    },
+    {
+      "name": "Doo Group",
+      "link": "https://www.doogroup.com/",
+      "title": "Senior FrontEnd Engineer",
+      "date": "2023.10 ~ 2024.09",
+      "content": [
+        "Responsible for the architecture design and core feature  of the PC web platform.",
+        "Designed and optimized a WebSocket-based market data solution, improving the real-time performance and stability of trading market data",
+        "Led website performance optimization using Lighthouse and PageSpeed Web Vitals for performance analysis and improvements"
       ]
     },
     {

@@ -1,23 +1,42 @@
 import React from 'react';
 
+interface WorkContentGroup {
+  name: string;
+  content: string[];
+}
+
+type WorkContentItem = string | WorkContentGroup;
+
 interface WorkExperienceProp {
   name: string;
   link: string;
   title: string;
   date: string;
   description?: string;
-  content: String[];
+  content: WorkContentItem[];
+}
+
+interface WorkConfig {
+  title: string;
+  content: WorkExperienceProp[];
 }
 
 interface Props {
   initial?: number;
-  workExperience: WorkExperienceProp[];
+  workExperience: WorkExperienceProp[] | WorkConfig;
+}
+
+function isWorkConfig(data: Props['workExperience']): data is WorkConfig {
+  return !Array.isArray(data);
 }
 
 export default function Work(props: Props = {} as Props) {
   const { useState } = React;
   const { workExperience = [], initial = 0 } = props;
-  const companyNames = (workExperience || [])?.map?.((exp) => exp.name);
+  const normalizedWorkExperience = isWorkConfig(workExperience)
+    ? workExperience.content
+    : workExperience;
+  const companyNames = (normalizedWorkExperience || [])?.map?.((exp) => exp.name);
   const [current, setCurrent] = useState(initial);
 
   return (
@@ -34,7 +53,7 @@ export default function Work(props: Props = {} as Props) {
         )}
       </ul>
       <ul className="w-136 ml-10">
-        {workExperience?.map?.((exp, idx) =>
+        {normalizedWorkExperience?.map?.((exp, idx) =>
           <li
             key={exp.name}
             className={`${idx === current ? 'block' : 'hidden'}`}
@@ -55,8 +74,17 @@ export default function Work(props: Props = {} as Props) {
             </h3>
             <p className="text-zinc-600 text-sm mb-4">{exp.date}</p>
             <ul>
-              {exp.content.map((content) =>
-                <li key={`${exp.name}-${content}`} className="mb-3 pl-5 arrow">{content}</li>
+              {exp.content.map((content, contentIdx) =>
+                typeof content === 'string'
+                  ? <li key={`${exp.name}-${content}`} className="mb-3 pl-5 arrow">{content}</li>
+                  : <li key={`${exp.name}-${content.name}-${contentIdx}`} className="mb-4 pl-5">
+                      <p className="arrow font-medium">{content.name}</p>
+                      <ul className="mt-2">
+                        {content.content.map((item) =>
+                          <li key={`${exp.name}-${content.name}-${item}`} className="mb-2 pl-5 arrow">{item}</li>
+                        )}
+                      </ul>
+                    </li>
               )}
             </ul>
           </li>
