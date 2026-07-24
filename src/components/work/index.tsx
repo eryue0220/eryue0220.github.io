@@ -76,12 +76,12 @@ export default function Work(props: Props = {} as Props) {
             <ul>
               {exp.content.map((content, contentIdx) =>
                 typeof content === 'string'
-                  ? <li key={`${exp.name}-${content}`} className="mb-3 pl-5 arrow">{content}</li>
+                  ? <li key={`${exp.name}-${content}`} className="relative mb-3 pl-5 before:absolute before:top-[.68em] before:left-[.15rem] before:h-[.35rem] before:w-[.35rem] before:-translate-y-1/2 before:rounded-full before:bg-[#e77643] before:shadow-[0_0_0_.2rem_rgba(231,118,67,0.14)] before:content-['']">{content}</li>
                   : <li key={`${exp.name}-${content.name}-${contentIdx}`} className="mb-4 pl-5">
-                      <p className="arrow font-medium">{content.name}</p>
+                      <p className="relative pl-5 font-medium before:absolute before:top-[.68em] before:left-[.15rem] before:h-[.35rem] before:w-[.35rem] before:-translate-y-1/2 before:rounded-full before:bg-[#e77643] before:shadow-[0_0_0_.2rem_rgba(231,118,67,0.14)] before:content-['']">{content.name}</p>
                       <ul className="mt-2">
                         {content.content.map((item) =>
-                          <li key={`${exp.name}-${content.name}-${item}`} className="mb-2 pl-5 arrow">{item}</li>
+                          <li key={`${exp.name}-${content.name}-${item}`} className="relative mb-2 pl-5 before:absolute before:top-[.68em] before:left-[.15rem] before:h-[.35rem] before:w-[.35rem] before:-translate-y-1/2 before:rounded-full before:bg-[#e77643] before:shadow-[0_0_0_.2rem_rgba(231,118,67,0.14)] before:content-['']">{item}</li>
                         )}
                       </ul>
                     </li>
