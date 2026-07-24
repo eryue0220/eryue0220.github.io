@@ -17,6 +17,14 @@
       "logo": "/images/oxcjs.png"
     },
     {
+      "name": "Heym",
+      "link": "https://github.com/heymrun/heym"
+    },
+    {
+      "name": "Rslint",
+      "link": "https://github.com/web-infra-dev/rslint"
+    },
+    {
       "name": "npmx.dev",
       "link": "https://github.com/npmx-dev/npmx.dev"
     }

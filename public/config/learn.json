@@ -3,27 +3,23 @@
   "content": [
     {
       "name": "Golang",
-      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg",
-      "start": "2023",
-      "progress": "40%"
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/go/go-original-wordmark.svg"
+    },
+    {
+      "name": "Python",
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"
     },
     {
       "name": "Rust",
-      "logo": "https://www.rust-lang.org/static/images/rust-logo-blk.svg",
-      "start": "2023",
-      "progress": "40%"
+      "logo": "https://www.rust-lang.org/static/images/rust-logo-blk.svg"
     },
     {
       "name": "Docker",
-      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg",
-      "start": "2023",
-      "progress": "5%"
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"
     },
     {
       "name": "PostgreSQL",
-      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-plain.svg",
-      "start": "2024",
-      "progress": "20%"
+      "logo": "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-plain.svg"
     }
   ]
 }

@@ -4,28 +4,37 @@ import HomeLayout from "@/layouts/index.astro";
 import Education from "@/components/education";
 import Language from "@/components/language";
 import Work from "@/components/work";
-import Project from "@/components/project";
 import Skill from "@/components/skill";
 import { SITE_TITLE as title } from "@/constant";
 
 import education from "../../../public/config/education.json";
+import building from "../../../public/config/building.json";
 import language from "../../../public/config/language.json";
 import learn from "../../../public/config/learn.json";
 import oss from "../../../public/config/oss.json";
-import project from "../../../public/config/project.json";
 import skill from "../../../public/config/skill.json";
 import work from "../../../public/config/work.json";
 ---
 
 <PageLayout header={title}>
   <HomeLayout title={title}>
-    <div class="mx-auto sm:w-9/12 md:w-xl">
+    <div class="about-page mx-auto w-full max-w-5xl px-5 sm:px-8">
       <!-- Experience -->
       {
         work && work?.content?.length ? (
-          <section class="py-5">
-            <h2 class="pb-6 text-3xl font-bold text-[#525252]">{work.title}</h2>
+          <section class="about-section">
+            <div class="section-heading"><span>01</span><h2>{work.title}</h2><i></i></div>
             <Work workExperience={work.content} client:visible />
+          </section>
+        ) : null
+      }
+
+      <!-- Building -->
+      {
+        building && building?.content?.length ? (
+          <section class="about-section">
+            <div class="section-heading"><span>02</span><h2>{building.title}</h2><i></i></div>
+            <Skill skills={building.content} />
           </section>
         ) : null
       }
@@ -33,8 +42,8 @@ import work from "../../../public/config/work.json";
       <!-- contribution -->
       {
         oss && oss?.content?.length ? (
-          <section class="py-5">
-            <h2 class="mb-10 text-3xl font-bold text-[#525252]">{oss.title}</h2>
+          <section class="about-section">
+            <div class="section-heading"><span>03</span><h2>{oss.title}</h2><i></i></div>
             <Skill skills={oss.content} />
           </section>
         ) : null
@@ -43,10 +52,8 @@ import work from "../../../public/config/work.json";
       <!-- Know -->
       {
         skill && skill?.content?.length ? (
-          <section class="py-5">
-            <h2 class="mb-10 text-3xl font-bold text-[#525252]">
-              {skill.title}
-            </h2>
+          <section class="about-section">
+            <div class="section-heading"><span>04</span><h2>{skill.title}</h2><i></i></div>
             <Skill skills={skill.content} client:visible />
           </section>
         ) : null
@@ -55,23 +62,9 @@ import work from "../../../public/config/work.json";
       <!-- Learn -->
       {
         learn && learn?.content?.length ? (
-          <section class="py-5">
-            <h2 class="mb-10 text-3xl font-bold text-[#525252]">
-              {learn.title}
-            </h2>
+          <section class="about-section">
+            <div class="section-heading"><span>05</span><h2>{learn.title}</h2><i></i></div>
             <Skill skills={learn.content} client:visible />
-          </section>
-        ) : null
-      }
-
-      <!-- Project -->
-      {
-        project && project?.content?.length ? (
-          <section class="py-5">
-            <h2 class="pb-3 text-3xl font-bold text-[#525252]">
-              {project.title}
-            </h2>
-            <Project projects={project.content} />
           </section>
         ) : null
       }
@@ -79,10 +72,8 @@ import work from "../../../public/config/work.json";
       <!-- Education -->
       {
         education && education?.content?.length ? (
-          <section class="py-5">
-            <h2 class="pb-3 text-3xl font-bold text-[#525252]">
-              {education?.title}
-            </h2>
+          <section class="about-section">
+            <div class="section-heading"><span>06</span><h2>{education?.title}</h2><i></i></div>
             <Education educations={education?.content || []} />
           </section>
         ) : null
@@ -91,10 +82,8 @@ import work from "../../../public/config/work.json";
       <!-- Language -->
       {
         language && language?.content?.length ? (
-          <section class="py-5">
-            <h2 class="pb-3 text-3xl font-bold text-[#525252]">
-              {language.title}
-            </h2>
+          <section class="about-section">
+            <div class="section-heading"><span>07</span><h2>{language.title}</h2><i></i></div>
             <Language languages={language.content} />
           </section>
         ) : null
