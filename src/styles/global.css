@@ -10,53 +10,8 @@
 }
 
 html { background: var(--paper); }
-body { color: var(--ink); font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
-.about-page { color: var(--ink); }
-.about-hero { padding: 2.5rem 0 5rem; }
-.about-kicker { display: flex; align-items: center; gap: .65rem; color: var(--accent); font-size: .72rem; font-weight: 800; letter-spacing: .22em; }
-.about-kicker span { width: .5rem; height: .5rem; border-radius: 999px; background: var(--accent); }
-.about-hero-grid { display: grid; grid-template-columns: 1fr 15rem; gap: 4rem; align-items: end; margin-top: 3.4rem; }
-.about-eyebrow { margin: 0 0 1rem; color: var(--muted); font-size: 1rem; letter-spacing: .03em; }
-.about-hero h1 { margin: 0; font-size: clamp(3.1rem, 7vw, 6.7rem); line-height: .98; letter-spacing: -.075em; font-weight: 800; }
-.about-hero h1 em { color: var(--accent); font-style: normal; }
-.about-lede { max-width: 34rem; margin: 2rem 0 0; color: var(--muted); font-size: 1.05rem; line-height: 1.75; }
-.about-note { min-height: 13rem; padding: 1.5rem; border: 1px solid var(--line); border-radius: 1.5rem; background: #fffdf9; display: flex; flex-direction: column; justify-content: space-between; transform: rotate(2deg); box-shadow: 0 1.25rem 3rem rgb(76 63 46 / 7%); }
-.about-note-mark { color: var(--accent); font-size: 2rem; line-height: 1; }
-.about-note p { margin: 0; font-size: 1.25rem; line-height: 1.25; font-weight: 700; letter-spacing: -.03em; }
-.about-note small { color: var(--muted); font-size: .7rem; letter-spacing: .12em; text-transform: uppercase; }
-.about-note small span { color: var(--accent); font-size: 1rem; }
-.about-stats { display: flex; gap: 4rem; margin-top: 5rem; padding-top: 1.25rem; border-top: 1px solid var(--line); }
-.about-stats div { display: flex; align-items: baseline; gap: .55rem; }
-.about-stats strong { font-size: 1.55rem; letter-spacing: -.05em; }
-.about-stats span { color: var(--muted); font-size: .75rem; }
-.about-section { padding-top: 3.5rem; }
-.section-heading { display: flex; align-items: center; gap: 1rem; margin-bottom: 2rem; }
-.section-heading span { color: var(--accent); font-size: .72rem; font-weight: 800; letter-spacing: .14em; }
-.section-heading h2 { margin: 0; font-size: 1.55rem; letter-spacing: -.04em; font-weight: 800; }
-.section-heading i { flex: 1; height: 1px; background: var(--line); }
-.about-page .arrow {
-  position: relative;
-  padding-left: 1.25rem;
-}
-.about-page .arrow::before {
-  position: absolute;
-  top: .68em;
-  left: .15rem;
-  width: .35rem;
-  height: .35rem;
-  border-radius: 999px;
-  background: var(--accent);
-  box-shadow: 0 0 0 .2rem rgb(231 118 67 / 14%);
-  content: '';
-  transform: translateY(-50%);
-}
-
-@media (max-width: 640px) {
-  .about-hero { padding-top: 1.25rem; padding-bottom: 3.5rem; }
-  .about-hero-grid { grid-template-columns: 1fr; gap: 2rem; margin-top: 2.5rem; }
-  .about-hero h1 { font-size: clamp(3rem, 15vw, 5rem); }
-  .about-note { width: min(100%, 15rem); min-height: 10rem; }
-  .about-stats { flex-wrap: wrap; gap: 1rem 1.5rem; margin-top: 3.5rem; }
-  .about-stats div { flex-direction: column; gap: .1rem; }
-  .about-section { padding-top: 2.5rem; }
+body {
+  color: var(--ink);
+  background: var(--paper);
+  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
