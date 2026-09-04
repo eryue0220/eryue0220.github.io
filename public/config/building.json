@@ -3,7 +3,8 @@
   "content": [
     {
       "name": "postcss-go",
-      "link": "https://github.com/eryue0220/postcss-go"
+      "link": "https://github.com/postcss-go/postcss-go",
+      "logo": "/images/postcss-go.svg"
     },
     {
       "name": "unplugin-stylex",

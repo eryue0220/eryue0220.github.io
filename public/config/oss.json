@@ -14,15 +14,17 @@
     {
       "name": "Oxc",
       "link": "https://github.com/oxc-project/oxc",
-      "logo": "/images/oxcjs.png"
+      "logo": "/images/oxc.svg"
     },
     {
       "name": "Heym",
-      "link": "https://github.com/heymrun/heym"
+      "link": "https://github.com/heymrun/heym",
+      "logo": "/images/heym.svg"
     },
     {
       "name": "Rslint",
-      "link": "https://github.com/web-infra-dev/rslint"
+      "link": "https://github.com/web-infra-dev/rslint",
+      "logo": "/images/rslint.svg"
     },
     {
       "name": "npmx.dev",
