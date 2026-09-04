@@ -81,7 +81,7 @@ const current = new Date().getFullYear();
               {
                 posts[year].map((post: Post) =>
                   <li class="flex items-center mb-4 ml-8 text-lg">
-                    <a href={`/blog/${post.slug}`}>
+                    <a href={`/blog/${post.id}`}>
                       <p class="pr-3">{formatDate(post.data.date)} {post.data.title}</p>
                     </a>
                     {post.data.lang
