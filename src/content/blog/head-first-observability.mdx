@@ -1,0 +1,33 @@
+---
+title: Head first observability
+date: 2026.09.13 01:31:00
+tag: observability opentelemetry infra
+---
+
+# 深入浅出 observability
+
+## 前言
+
+这项技术栈一直是我觉得很酷也很有兴趣想要去学习和了解的内容。在过去的项目开发中，或多或少都使用和了解过相关的工具或技术。也曾经在大型互联网公司中开发过相关的工具和平台，但受限当时的认知以及水平，在相关的指标采集和灵活度啥上并没有如今的 `opentelemtry` 做的成熟和灵活。
+
+第一次接触 `opentelemtry` 的是在 2023 年，当时是在公司内部在做一个 serverless 平台的开发，当时在为平台内部的数据采集的相关方案进行调研，但是在初步了解后就对该方案放弃了，因为要想在短时间内熟悉和掌握并将其用于在生产环境上的难度有点高，而且之前在这方面的知识储备有限，一下把 `metrics`、`logs` 和 `traces` 以及 `span` 等相关概念灌入到大脑，顿时手足无措，尤其是对 `span` 相关理念的理解非常混乱。后续在学习 go 的过程中，了解到了 grafana 和 prometheus 等 observability 平台，又开始再次学习了相关概念，这次没被相关概念给淹没。反而是被相关平台的配置和概念先淹没了。
+
+最近则是在一家 AI 创业公司的开发中，由于需要对开发环节的各个链路进行监控，尤其在对 LLM 这类黑盒程度比较高的程序链路上，observability 显得更为重要。opentelemetry 这个技术栈又再次被纳入到技术选型里。这次则可以在实践中学习和了解 observability。
+
+### 什么是 observability
+
+"该怎么测量这个 API 在生产环境的性能？" 或者 “如何监控该 API 的稳定性？”， 这类问题应该是每个开发者或者测试在整个产品的开发周期都绕不开的问题，这也是 observability 要解决的核心问题，开发者或者运维该如何能够在系统运行过程中知道到底发生了什么事情。比如，用户反馈在登录这个场景的响应上有点慢，或者开发者在将某个功能发布上线后，该怎么观察其在线上的运行效果，是否引入了 slow db query，新增的 http 具体耗时是多少等。observability 则是回答该问题的关键，它会告诉你这个 "慢" 和每次响应的耗时是怎么产生的？
+
+### 什么是 opentelemetry
+
+介绍完了 observability，接下来说下什么是 opentelemetry。可以理解为 opentelemetry 是为了实现 observability 这一能力所需要的工具。`opentelemetry` 因其开源、多功能和多语言支持等优势被大多数 observability 平台支持，本部分的后续内容也都将以 `opentelemetry-js` 和 `opentelemetry-go` 作为示例代码来进行讲解，至于为什么要用两种语言，主要是为了帮助自己一边学习相关内容一边也让自己更加熟练掌握 go 语言。
+
+### Observability 核心
+
+Observability 核心主要包含三个部分：**Metrics**、**Logs** 和 **Traces**。接下来则会分别说明下这三个核心概念的含义。
+
+#### Metrics
+
+#### Logs
+
+#### Traces

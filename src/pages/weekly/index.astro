@@ -44,13 +44,7 @@ const current = new Date().getFullYear();
         next.classList.replace('hidden', 'block');
       }
 
-      if (Array.from((target as HTMLElement).classList).includes('year-title-expand')) {
-        (target as HTMLElement).classList.remove('year-title-expand');
-        (target as HTMLElement).classList.remove('rotate-z-90');
-      } else {
-        (target as HTMLElement).classList.add('year-title-expand');
-        (target as HTMLElement).classList.add('rotate-z-90');
-      }
+      (target as HTMLElement).classList.toggle('year-title-expand');
     });
   });
 </script>
@@ -66,7 +60,7 @@ const current = new Date().getFullYear();
               arrow
               text-2xl
               ${isOnlyOne ? '' : 'year-title cursor-pointer'}
-              ${current === Number(year) ? 'year-title-expand rotate-z-90' : ''}
+              ${current === Number(year) || isOnlyOne ? 'year-title-expand' : ''}
             `}>
               {year}
             </h1>
