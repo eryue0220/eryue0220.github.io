@@ -28,8 +28,26 @@ Observability 核心主要包含三个部分：**Metrics**、**Logs** 和 **Trac
 
 #### Metrics
 
-Metrics 的
+Metrics 回答的是目前系统的状态是怎样的？比如目前系统 CPU 、Memory 是多少？现在的 qps 是多少？
 
 #### Logs
 
+Logs 则回答了具体发生了什么？但 logs 不是简单地记录一个 `login failed` 或者 `payment failed`，一个完整的 logs 应该类似如下的记录：
+
+```json
+{
+  "level": "error",
+  "service": "payment-service",
+  "request_id": "abc123",
+  "user_id": "u_123",
+  "order_id": "o_456",
+  "error": "payment_timeout",
+  "latency_ms": 5021
+}
+```
+
+尤其是 `request_id`、`trace_id` 这类，在微服务之类的跨系统场景下会非常有帮助，可以用一个 id 关联到具体的用户在每个系统上的操作内容，以方便定位出具体的出错是在哪个系统发生的？
+
 #### Traces
+
+Traces 是回答了每个系统处理到底花了多少时间？通过 traces 可以快速知道每个系统、每个函数调用所耗费的时间。其核心的概念包括 `span`、`attribute` 和 `status`。这是我认为 observability 中最有趣也是最复杂的部分。
