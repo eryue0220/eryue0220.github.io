@@ -1,99 +1,189 @@
 ---
-import { type CollectionEntry, getCollection } from 'astro:content';
-import Page from '@/layouts/page.astro';
-import BlogLayout from '@/layouts/blog.astro';
-import { SITE_TITLE as title } from '@/constant';
+import { type CollectionEntry, getCollection } from "astro:content";
+import Page from "@/layouts/page.astro";
+import BlogLayout from "@/layouts/blog.astro";
+import { SITE_TITLE as title } from "@/constant";
+import { formatDate } from "@/utils";
 
-type Post = CollectionEntry<'blog'>;
+type Post = CollectionEntry<"blog">;
 
-function formatDate(date: Date): string {
-  const d = new Date(date);
-  const year = d.getFullYear();
-  const month = d.getMonth() + 1;
-  const day = d.getDay();
-  return `${year}-${month > 9 ? month : `0${month}`}-${day > 9 ? day : `0${day}`}`;
-}
-
-const posts = (await getCollection('blog'))
+const publishedPosts = (await getCollection("blog"))
   .filter((post) => !post.data.draft)
   .map((post) => ({
     ...post,
     data: {
       ...post.data,
       pubYear: formatDate(post.data.date).slice(0, 4),
-      pubDate: formatDate(post.data.date)
+      pubDate: formatDate(post.data.date),
     },
   }))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .reduce((acc, cur) => {
-    if (!acc[cur.data.pubYear]) {
-      acc[cur.data.pubYear] = [];
-    }
-    acc[cur.data.pubYear].push(cur);
-    return acc;
-  }, {} as Record<string, Post[]>);
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+
+const getTags = (post: Post) => [...new Set(post.data.tag.split(/\s+/).filter(Boolean))];
+const tags = [...new Set(publishedPosts.flatMap(getTags))].sort((a, b) => a.localeCompare(b));
+const posts = publishedPosts.reduce(
+    (acc, cur) => {
+      if (!acc[cur.data.pubYear]) {
+        acc[cur.data.pubYear] = [];
+      }
+      acc[cur.data.pubYear].push(cur);
+      return acc;
+    },
+    {} as Record<string, Post[]>,
+  );
 
 const postsKeys = Object.keys(posts).sort((a, b) => Number(b) - Number(a));
 const isOnlyOne = postsKeys.length === 1;
-const current = new Date().getFullYear();
 ---
 
 <script>
-  const titles = document.querySelectorAll('h1.year-title');
-  titles.forEach((title) => {
-    title.addEventListener('click', (evt) => {
-      const { target } = evt;
-      const posts = (target as any).nextElementSibling;
+  const blog = document.querySelector<HTMLElement>("[data-blog]");
+  if (blog) {
+    const filters = blog.querySelector<HTMLElement>("[data-tag-filters]")!;
+    const buttons = filters.querySelectorAll<HTMLButtonElement>("[data-tag]");
+    const groups = blog.querySelectorAll<HTMLElement>("[data-year]");
+    const status = blog.querySelector<HTMLElement>("[data-filter-status]")!;
 
-      if (posts && Array.from(posts.classList).includes('block')) {
-        posts.classList.replace('block', 'hidden');
-      } else {
-        posts.classList.replace('hidden', 'block');
-      }
+    const applyFilter = () => {
+      const requestedTag = new URL(window.location.href).searchParams.get("tag") ?? "";
+      const selectedTag = Array.from(buttons).some((button) => button.dataset.tag === requestedTag)
+        ? requestedTag : "";
+      let count = 0;
+      buttons.forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.tag === selectedTag));
+      });
+      groups.forEach((group) => {
+        let matches = 0;
+        group.querySelectorAll<HTMLElement>("[data-post-tags]").forEach((post) => {
+          const tags: string[] = JSON.parse(post.dataset.postTags!);
+          const visible = !selectedTag || tags.includes(selectedTag);
+          post.hidden = !visible;
+          if (visible) matches++;
+        });
+        group.hidden = matches === 0;
+        count += matches;
+        const toggle = group.querySelector<HTMLButtonElement>("[data-year-toggle]");
+        const list = group.querySelector<HTMLElement>("[data-year-posts]")!;
+        list.hidden = false;
+        toggle?.setAttribute("aria-expanded", "true");
+        toggle?.classList.add("year-title-expand");
+      });
+      status.textContent = `${count} ${count === 1 ? "post" : "posts"}${selectedTag ? ` tagged “${selectedTag}”` : ""}`;
+    };
 
-      if (Array.from((target as HTMLElement).classList).includes('year-title-expand')) {
-        (target as HTMLElement).classList.remove('year-title-expand');
-        (target as HTMLElement).classList.remove('rotate-z-90');
-      } else {
-        (target as HTMLElement).classList.add('year-title-expand');
-        (target as HTMLElement).classList.add('rotate-z-90');
-      }
+    buttons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const url = new URL(window.location.href);
+        const tag = button.dataset.tag!;
+        if (tag) url.searchParams.set("tag", tag);
+        else url.searchParams.delete("tag");
+        if (url.href !== window.location.href) window.history.pushState(null, "", url);
+        applyFilter();
+      });
     });
-  });
+    blog.querySelectorAll<HTMLButtonElement>("[data-year-toggle]").forEach((toggle) => {
+      toggle.addEventListener("click", () => {
+        const list = document.getElementById(toggle.getAttribute("aria-controls")!)!;
+        list.hidden = !list.hidden;
+        toggle.setAttribute("aria-expanded", String(!list.hidden));
+        toggle.classList.toggle("year-title-expand", !list.hidden);
+      });
+    });
+    window.addEventListener("popstate", applyFilter);
+    applyFilter();
+    filters.hidden = false;
+  }
 </script>
 
 <Page header={title}>
   <BlogLayout>
-    <article class="mx-auto sm:w-8/12 md:w-xl">
-      <ul class="py-20">
-        {postsKeys.map((year) =>
-          <li class="mt-10 first:mt-0">
-            <h1 class={`
-              pl-5
-              arrow
-              text-2xl
-              ${isOnlyOne ? '' : 'year-title cursor-pointer'}
-              ${current === Number(year) ? 'year-title-expand rotate-z-90' : ''}
-            `}>
-              {year}
-            </h1>
-            <ul class={`list-disc mt-3 ${current === Number(year) || isOnlyOne ? 'block' : 'hidden'}`}>
-              {
-                posts[year].map((post: Post) =>
-                  <li class="flex items-center mb-4 ml-8 text-lg">
+    <article data-blog class="blog-list-layout mx-auto py-20 px-4 sm:px-5">
+
+      <ul>
+        {
+          postsKeys.map((year) => (
+            <li data-year={year} class="mt-10 first:mt-0">
+              <h1 class="text-2xl">
+                {isOnlyOne ? <span class="pl-5">{year}</span> : (
+                  <button
+                    type="button"
+                    data-year-toggle
+                    aria-expanded="true"
+                    aria-controls={`posts-${year}`}
+                    class="pl-5 arrow year-title-expand cursor-pointer"
+                  >
+                    {year}
+                  </button>
+                )}
+              </h1>
+              <ul id={`posts-${year}`} data-year-posts class="list-disc mt-3">
+                {posts[year].map((post: Post) => (
+                  <li data-post-tags={JSON.stringify(getTags(post))} class="flex items-center mb-4 ml-8 text-lg">
                     <a href={`/blog/${post.id}`}>
-                      <p class="pr-3">{formatDate(post.data.date)} {post.data.title}</p>
+                      <p class="pr-3">
+                        {formatDate(post.data.date)} {post.data.title}
+                      </p>
                     </a>
-                    {post.data.lang
-                      ? <p class="border-2 border-dotted border-zinc-600 text-sm">{post.data.lang?.toUpperCase()}</p>
-                      : null}
+                    {post.data.lang ? (
+                      <p class="border-2 border-dotted border-zinc-600 text-sm">
+                        {post.data.lang?.toUpperCase()}
+                      </p>
+                    ) : null}
                   </li>
-                )
-              }
-            </ul>
-          </li>
-        )}
+                ))}
+              </ul>
+            </li>
+          ))
+        }
       </ul>
+      <aside data-tag-filters hidden aria-label="Tags" class="tag-sidebar">
+        <div role="group" aria-label="Filter posts by tag" class="flex flex-col items-start gap-2">
+          {["", ...tags].map((tag) => (
+            <button
+              type="button"
+              data-tag={tag}
+              aria-pressed={tag === "" ? "true" : "false"}
+              class="tag-filter rounded-full border px-3 py-1 text-sm cursor-pointer"
+            >
+              {tag || "All"}
+            </button>
+          ))}
+        </div>
+        <p data-filter-status role="status" aria-live="polite" class="mt-3 text-sm text-[var(--muted)]"></p>
+      </aside>
     </article>
   </BlogLayout>
 </Page>
+
+<style>
+  [hidden] { display: none !important; }
+  .blog-list-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(7rem, 22vw, 10rem);
+    align-items: start;
+    gap: clamp(1rem, 4vw, 2.5rem);
+  }
+  .tag-sidebar {
+    min-width: 0;
+    border-left: 1px solid var(--line);
+    padding-left: clamp(0.75rem, 2vw, 1.5rem);
+  }
+  .tag-filter {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    text-align: left;
+  }
+  [data-filter-status], [data-post-tags] { overflow-wrap: anywhere; }
+  [data-post-tags] a { min-width: 0; }
+  .tag-filter { border-color: var(--line); }
+  .tag-filter:hover { border-color: var(--ink); }
+  .tag-filter[aria-pressed="true"] {
+    background: var(--ink);
+    border-color: var(--ink);
+    color: var(--paper);
+  }
+  button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+  }
+</style>
