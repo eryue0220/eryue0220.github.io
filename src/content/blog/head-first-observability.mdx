@@ -8,46 +8,68 @@ tag: observability opentelemetry infra
 
 ## 前言
 
-这项技术栈一直是我觉得很酷也很有兴趣想要去学习和了解的内容。在过去的项目开发中，或多或少都使用和了解过相关的工具或技术。也曾经在大型互联网公司中开发过相关的工具和平台，但受限当时的认知以及水平，在相关的指标采集和灵活度啥上并没有如今的 `opentelemtry` 做的成熟和灵活。
+Observability 一直是我觉得很酷，也很感兴趣的一套技术体系。在过去的项目开发中，或多或少都使用和了解过相关的工具或技术。过去也曾在大型互联网公司参与过相关工具和平台的开发，但受限当时的认知以及水平，在相关的指标采集和灵活度啥上并没有如今的 `opentelemetry` 做的成熟和灵活。
 
-第一次接触 `opentelemtry` 的是在 2023 年，当时是在公司内部在做一个 serverless 平台的开发，当时在为平台内部的数据采集的相关方案进行调研，但是在初步了解后就对该方案放弃了，因为要想在短时间内熟悉和掌握并将其用于在生产环境上的难度有点高，而且之前在这方面的知识储备有限，一下把 `metrics`、`logs` 和 `traces` 以及 `span` 等相关概念灌入到大脑，顿时手足无措，尤其是对 `span` 相关理念的理解非常混乱。后续在学习 go 的过程中，了解到了 grafana 和 prometheus 等 observability 平台，又开始再次学习了相关概念，这次没被相关概念给淹没。反而是被相关平台的配置和概念先淹没了。
+第一次接触 `opentelemetry` 的是在 2023 年，当时在做一个 serverless 平台的开发，为平台内部的数据采集进行方案调研。但是在初步了解后就对该方案放弃了，因为要想在短时间内熟悉和掌握并将其用于在生产环境上的难度有点高，而且之前在这方面的知识储备有限，短时间内将各种概念灌入大脑，顿时有点手足无措，尤其是对 `span` 相关理念的理解非常混乱。后续在学习 go 的过程中，接触到了 Prometheus、Grafana 等 Observability 相关工具，又开始再次学习了相关概念，这次没被相关概念给淹没。反而是被相关平台的配置和概念先淹没了。
 
-最近则是在一家 AI 创业公司的开发中，由于需要对开发环节的各个链路进行监控，尤其在对 LLM 这类黑盒程度比较高的程序链路上，observability 显得更为重要。opentelemetry 这个技术栈又再次被纳入到技术选型里。这次则可以在实践中学习和了解 observability。
+最近则是在一家 AI 创业公司的开发中，由于需要对开发环节的各个链路进行监控，尤其是 LLM 本身具有较强的不确定性和黑盒属性，传统的 Error Log 和接口监控已经很难完整解释一次 Agent / LLM 调用链到底发生了什么。，observability 显得更为重要。opentelemetry 这个技术栈又再次被纳入到技术选型里。这次则可以在实践中学习和了解 observability。
 
 ### 什么是 observability
 
-"该怎么测量这个 API 在生产环境的性能？" 或者 “如何监控该 API 的稳定性？”， 这类问题应该是每个开发者或者测试在整个产品的开发周期都绕不开的问题，这也是 observability 要解决的核心问题，开发者或者运维该如何能够在系统运行过程中知道到底发生了什么事情。比如，用户反馈在登录这个场景的响应上有点慢，或者开发者在将某个功能发布上线后，该怎么观察其在线上的运行效果，是否引入了 slow db query，新增的 http 具体耗时是多少等。observability 则是回答该问题的关键，它会告诉你这个 "慢" 和每次响应的耗时是怎么产生的？
+在开发一个线上系统时，我们经常需要回答或面对这类问题：
+
+1. 为什么现在 payment process 突然变得这么慢？
+2. 为什么同一个请求只有部分用户会失败？
+3. 在某个功能发布后，为什么突然整个系统负载突然飙升？
+4. 为什么突然某个生产环境的功能产生异常？
+
+如果在开发或运维某个生产系统时，曾碰到或者处理过类似的问题，那么就需要借助 observability 来回答，Observability 希望通过系统产生的各种 Telemetry Signals 来理解系统内部状态，并帮助我们回答那些事先没有预设的问题。我理解这也是和 Monitoring 比较大的区别，Monitoring 更多是在关注当前系统的某个状态是否超过了我的阈值，比如当前系统的 CPU 使用率是否超过 80%？，这看起来也更像是一个结果，经常可能用于回答老板或者运维的问题：当前系统负载如何？是否需要进行下一步处理？
+
+而 observability 则关注当前系统为什么会这样？比如遇到某个慢 http 请求时，通过 observability 可以知道整个流程哪里出了问题？是出现了慢 DB 查询，还是网关调度不合理。所以 Monitoring 回答了发生了什么？而 observability 则解释发生的原因。
 
 ### 什么是 opentelemetry
 
-介绍完了 observability，接下来说下什么是 opentelemetry。可以理解为 opentelemetry 是为了实现 observability 这一能力所需要的工具。`opentelemetry` 因其开源、多功能和多语言支持等优势被大多数 observability 平台支持，本部分的后续内容也都将以 `opentelemetry-js` 和 `opentelemetry-go` 作为示例代码来进行讲解，至于为什么要用两种语言，主要是为了帮助自己一边学习相关内容一边也让自己更加熟练掌握 go 语言。
+介绍完了 observability，接下来说下什么是 opentelemetry。可以理解为 opentelemetry 是一套用于实现 Observability 的标准和工具链。`opentelemetry` 因其开源、多功能和多语言支持等优势，目前也已经被大量主流 Observability 平台和厂商支持，本部分的后续内容也都将以 `opentelemetry-js` 和 `opentelemetry-go` 作为示例代码来进行讲解，至于为什么要用两种语言，主要是为了帮助自己一边学习相关内容一边也让自己更加熟练掌握 go 语言。
 
-### Observability 核心
+### 常见的 Telemetry Signals
 
-Observability 核心主要包含三个部分：**Metrics**、**Logs** 和 **Traces**。接下来则会分别说明下这三个核心概念的含义。
+再重新学习 observability 的过程中，我觉得需要对这几个 Metrics、Logs、Traces 这几个指标的定义重新进行理解，当然现在 Profiles 也越来越重要。
 
 #### Metrics
 
-Metrics 回答的是目前系统的状态是怎样的？比如目前系统 CPU 、Memory 是多少？现在的 qps 是多少？
+简单讲，Metrics 回答的是当前系统在某段时间内的数值，描述当前系统整体的行为和趋势，比如常用 Metrics 相关指标来查看当前系统的 CPU 的使用量或者 Mem 使用量情况，常见的 Metrics 指标主要涵盖了 四类：
+
+1. Counter：用于统计某个事件累计发生的次数；
+2. Gauge：当前某个值是多少；
+3. Histogram：一组数据的分布情况；
+4. Summary：特定分位数的汇总统计结果；
 
 #### Logs
 
-Logs 则回答了具体发生了什么？但 logs 不是简单地记录一个 `login failed` 或者 `payment failed`，一个完整的 logs 应该类似如下的记录：
+Logs 则回答了某个时间具体发生了什么？但 logs 不是简单地记录一个 `login failed` 或者 `payment failed`，一个结构化的 logs 应该类似如下：
 
 ```json
 {
+  "timestamp": "...",
   "level": "error",
   "service": "payment-service",
-  "request_id": "abc123",
-  "user_id": "u_123",
-  "order_id": "o_456",
+  "request_id": "...",
+  "user_id": "...",
+  "order_id": "...",
   "error": "payment_timeout",
+  "trace_id": "...",
   "latency_ms": 5021
 }
 ```
 
-尤其是 `request_id`、`trace_id` 这类，在微服务之类的跨系统场景下会非常有帮助，可以用一个 id 关联到具体的用户在每个系统上的操作内容，以方便定位出具体的出错是在哪个系统发生的？
-
 #### Traces
 
-Traces 是回答了每个系统处理到底花了多少时间？通过 traces 可以快速知道每个系统、每个函数调用所耗费的时间。其核心的概念包括 `span`、`attribute` 和 `status`。这是我认为 observability 中最有趣也是最复杂的部分。
+Traces 是我认为 observability 中最有趣也是最复杂的部分。其要回答的问题是某个请求经过了哪些系统，完整的执行路径是怎么样的。其核心的概念包括 `span`、`attribute` 和 `status` 等。更为关键的是**分布式tracing**，现代软件工程中，很多功能开发是通过不同的系统或微服务来组合完成，需要用一个 `trace_id` 来将某个用户行为（用户登录、付费）过程完整地串联起来。
+
+#### Profiles
+
+Profiling 本身并不是一个比较新的概念，但是现在 Profiles 越来越多被作为一种 Telemetry signal 纳入到 Observability 的体系中。可以理解是记录程序运行时“代码级资源消耗”的遥测信号，主要是用于记录程序运行过程中资源消耗在了哪里。其通过周期性地采样系统调用栈来观察系统资源消耗在了哪些地方？常见的 Profile 包括：CPU Profile、Heap Profile 和 Memory Profile 等。
+
+#### 四个指标的关系
+
+仔细观察上面的四个指标定义后，不难发现这四个属于递进式，通过 Metrics 发现当前系统异常，通过 Traces 追踪到异常具体发生的哪一步的操作上，通过 Profiles 来定位到具体的代码和函数调用栈上，而 logs 则是记录了该事件详细内容，对应的用户、时间和具体操作等。
