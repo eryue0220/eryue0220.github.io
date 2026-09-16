@@ -7,8 +7,11 @@
       "title": "Senior Full Stack Engineer",
       "date": "2024.11 ~ 2026.04",
       "content": [
-        "Designed and implemented backend services based on Supabase, Drizzle, AWS Lambda, and Cloudflare",
-        "Built high-performance front-end applications using Next.js, React"
+        "Architected an AI-native full-stack platform with Next.js, TypeScript, Supabase, AWS Lambda, and Cloudflare, delivering scalable serverless and edge-native systems.",
+        "Built streaming report generation, structured outputs, and multi-model orchestration using Vercel AI SDK, OpenAI API, and OpenRouter.",
+        "Developed MCP servers and an MCP gateway with OpenAPI-based tool integration, standardizing communication between LLMs and external services.",
+        "Built a public-facing Agent API service with Python and FastAPI, exposing agent capabilities through stable, reusable endpoints for external integrations.",
+        "Built a frontend-oriented Session Web security isolation solution using Browserbase."
       ]
     },
     {
@@ -17,9 +20,9 @@
       "title": "Senior FrontEnd Engineer",
       "date": "2024.03 ~ 2024.11",
       "content": [
-        "Responsible for the architecture design and core feature  of the PC web platform.",
-        "Designed and optimized a WebSocket-based market data solution, improving the real-time performance and stability of trading market data",
-        "Led website performance optimization using Lighthouse and PageSpeed Web Vitals for performance analysis and improvements"
+        "Led front-end architecture and core feature development for a PC web application using Ant Group's Umi micro-frontend framework, Tailwind CSS, and Zustand.",
+        "Engineered and optimized a WebSocket-based market data streaming solution, improving real-time performance and system stability.",
+        "Developed server-side trading system features with Node.js and Koa, using async-mutex to coordinate concurrent operations safely."
       ]
     },
     {
@@ -28,9 +31,9 @@
       "title": "Senior FrontEnd Engineer",
       "date": "2018.12 ~ 2023.07",
       "content": [
-        "Worked on the mobile (hybrid) app, which is like a stock finance dashboard data and rich interaction.",
-        "Worked on internal serverless tools, mainly responsible for cross-language calling protocol to support function can be called in different language, and it also help to speed business launch and improve DX.",
-        "Helped teams solve complex technical problems, provide relevant solutions and references, and participate in Code Review in the group."
+        "Led early-stage technical evaluation, architecture selection, and solution design for fintech stock and fund web products.",
+        "Built rich, responsive applications used by millions of users across multiple device types.",
+        "Contributed to building a serverless platform, implementing cross-language protocol generation, function parsing, and compilation pipelines with TypeScript, Babel, and Rollup; supported peak traffic from 100K users and teams through architecture guidance and code reviews."
       ]
     },
     {
