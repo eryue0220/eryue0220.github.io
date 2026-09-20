@@ -44,7 +44,8 @@ const current = new Date().getFullYear();
         next.classList.replace('hidden', 'block');
       }
 
-      (target as HTMLElement).classList.toggle('year-title-expand');
+      const heading = target as HTMLElement;
+      heading.setAttribute('aria-expanded', String(next.classList.contains('block')));
     });
   });
 </script>
@@ -57,11 +58,10 @@ const current = new Date().getFullYear();
           <li class="mt-10 first:mt-0">
             <h1 class={`
               pl-5
-              arrow
+              relative before:content-[''] before:absolute before:left-[0.35rem] before:top-1/2 before:size-[0.4em] before:border-r-2 before:border-b-2 before:[transform:translateY(-70%)_rotate(-45deg)] before:transition-transform before:duration-150 before:ease-[ease] aria-expanded:before:[transform:translateY(-50%)_rotate(45deg)]
               text-2xl
               ${isOnlyOne ? '' : 'year-title cursor-pointer'}
-              ${current === Number(year) || isOnlyOne ? 'year-title-expand' : ''}
-            `}>
+            `} aria-expanded={current === Number(year) || isOnlyOne ? 'true' : 'false'}>
               {year}
             </h1>
             <ul class={`list-disc mt-3 ${current === Number(year) || isOnlyOne ? 'block' : 'hidden'}`}>

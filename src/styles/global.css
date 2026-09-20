@@ -1,38 +1,11 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
-:root {
-  --ink: #24231f;
-  --muted: #77736c;
-  --paper: #f7f5ef;
-  --line: #dedbd2;
-  --accent: #e77643;
-}
-
-html { background: var(--paper); }
-body {
-  color: var(--ink);
-  background: var(--paper);
-  font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-}
-
-.arrow {
-  position: relative;
-}
-
-.arrow::before {
-  content: "";
-  position: absolute;
-  left: 0.35rem;
-  top: 50%;
-  width: 0.4em;
-  height: 0.4em;
-  border-right: 2px solid currentColor;
-  border-bottom: 2px solid currentColor;
-  transform: translateY(-70%) rotate(-45deg);
-  transition: transform 0.15s ease;
-}
-
-.arrow.year-title-expand::before {
-  transform: translateY(-50%) rotate(45deg);
+@theme {
+  --color-ink: #24231f;
+  --color-muted: #77736c;
+  --color-paper: #f7f5ef;
+  --color-line: #dedbd2;
+  --color-accent: #e77643;
+  --font-sans: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }

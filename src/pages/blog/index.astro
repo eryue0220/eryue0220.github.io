@@ -66,7 +66,6 @@ const isOnlyOne = postsKeys.length === 1;
         const list = group.querySelector<HTMLElement>("[data-year-posts]")!;
         list.hidden = false;
         toggle?.setAttribute("aria-expanded", "true");
-        toggle?.classList.add("year-title-expand");
       });
       status.textContent = `${count} ${count === 1 ? "post" : "posts"}${selectedTag ? ` tagged “${selectedTag}”` : ""}`;
     };
@@ -86,7 +85,6 @@ const isOnlyOne = postsKeys.length === 1;
         const list = document.getElementById(toggle.getAttribute("aria-controls")!)!;
         list.hidden = !list.hidden;
         toggle.setAttribute("aria-expanded", String(!list.hidden));
-        toggle.classList.toggle("year-title-expand", !list.hidden);
       });
     });
     window.addEventListener("popstate", applyFilter);
@@ -97,12 +95,12 @@ const isOnlyOne = postsKeys.length === 1;
 
 <Page header={title}>
   <BlogLayout>
-    <article data-blog class="blog-list-layout mx-auto py-20 px-4 sm:px-5">
+    <article data-blog class="grid grid-cols-[minmax(0,1fr)_clamp(7rem,22vw,10rem)] items-start gap-[clamp(1rem,4vw,2.5rem)] mx-auto py-20 px-4 sm:px-5 [&_[hidden]]:hidden! [&_button]:focus-visible:outline-2 [&_button]:focus-visible:outline-solid [&_button]:focus-visible:outline-accent [&_button]:focus-visible:outline-offset-3">
 
-      <ul>
+      <ul class="grid min-w-0 gap-10">
         {
           postsKeys.map((year) => (
-            <li data-year={year} class="mt-10 first:mt-0">
+            <li data-year={year}>
               <h1 class="text-2xl">
                 {isOnlyOne ? <span class="pl-5">{year}</span> : (
                   <button
@@ -110,17 +108,21 @@ const isOnlyOne = postsKeys.length === 1;
                     data-year-toggle
                     aria-expanded="true"
                     aria-controls={`posts-${year}`}
-                    class="pl-5 arrow year-title-expand cursor-pointer"
+                    class="pl-5 cursor-pointer relative before:content-[''] before:absolute before:left-[0.35rem] before:top-1/2 before:size-[0.4em] before:border-r-2 before:border-b-2 before:[transform:translateY(-70%)_rotate(-45deg)] before:transition-transform before:duration-150 before:ease-[ease] aria-expanded:before:[transform:translateY(-50%)_rotate(45deg)]"
                   >
                     {year}
                   </button>
                 )}
               </h1>
-              <ul id={`posts-${year}`} data-year-posts class="list-disc mt-3">
+              <ul
+                id={`posts-${year}`}
+                data-year-posts
+                class="grid gap-4 mt-3 pl-8 text-lg [&>li]:grid [&>li]:grid-cols-[minmax(0,1fr)_auto] [&>li]:items-center [&>li]:gap-3 [&>li]:wrap-anywhere"
+              >
                 {posts[year].map((post: Post) => (
-                  <li data-post-tags={JSON.stringify(getTags(post))} class="flex items-center mb-4 ml-8 text-lg">
-                    <a href={`/blog/${post.id}`}>
-                      <p class="pr-3">
+                  <li data-post-tags={JSON.stringify(getTags(post))}>
+                    <a href={`/blog/${post.id}`} class="min-w-0">
+                      <p>
                         {formatDate(post.data.date)} {post.data.title}
                       </p>
                     </a>
@@ -136,54 +138,21 @@ const isOnlyOne = postsKeys.length === 1;
           ))
         }
       </ul>
-      <aside data-tag-filters hidden aria-label="Tags" class="tag-sidebar">
+      <aside data-tag-filters hidden aria-label="Tags" class="min-w-0 border-l border-line pl-[clamp(0.75rem,2vw,1.5rem)]">
         <div role="group" aria-label="Filter posts by tag" class="flex flex-col items-start gap-2">
           {["", ...tags].map((tag) => (
             <button
               type="button"
               data-tag={tag}
               aria-pressed={tag === "" ? "true" : "false"}
-              class="tag-filter rounded-full border px-3 py-1 text-sm cursor-pointer"
+              class="max-w-full wrap-anywhere text-left rounded-full border border-line px-3 py-1 text-sm cursor-pointer hover:border-ink aria-pressed:bg-ink aria-pressed:border-ink aria-pressed:text-paper"
             >
               {tag || "All"}
             </button>
           ))}
         </div>
-        <p data-filter-status role="status" aria-live="polite" class="mt-3 text-sm text-[var(--muted)]"></p>
+        <p data-filter-status role="status" aria-live="polite" class="mt-3 text-sm text-muted wrap-anywhere"></p>
       </aside>
     </article>
   </BlogLayout>
 </Page>
-
-<style>
-  [hidden] { display: none !important; }
-  .blog-list-layout {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) clamp(7rem, 22vw, 10rem);
-    align-items: start;
-    gap: clamp(1rem, 4vw, 2.5rem);
-  }
-  .tag-sidebar {
-    min-width: 0;
-    border-left: 1px solid var(--line);
-    padding-left: clamp(0.75rem, 2vw, 1.5rem);
-  }
-  .tag-filter {
-    max-width: 100%;
-    overflow-wrap: anywhere;
-    text-align: left;
-  }
-  [data-filter-status], [data-post-tags] { overflow-wrap: anywhere; }
-  [data-post-tags] a { min-width: 0; }
-  .tag-filter { border-color: var(--line); }
-  .tag-filter:hover { border-color: var(--ink); }
-  .tag-filter[aria-pressed="true"] {
-    background: var(--ink);
-    border-color: var(--ink);
-    color: var(--paper);
-  }
-  button:focus-visible {
-    outline: 2px solid var(--accent);
-    outline-offset: 3px;
-  }
-</style>
