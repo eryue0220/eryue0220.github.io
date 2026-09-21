@@ -2,8 +2,9 @@
 import { type CollectionEntry, getCollection } from 'astro:content';
 import Page from '@/layouts/page.astro';
 import HomeLayout from '@/layouts/index.astro';
-import { SITE_TITLE as title } from '@/constant';
 import { formatDate } from '@/utils';
+
+const description = 'Weekly notes and reading logs.';
 
 type Post = CollectionEntry<'weekly'>;
 
@@ -50,7 +51,7 @@ const current = new Date().getFullYear();
   });
 </script>
 
-<Page header={title}>
+<Page title="Weekly" description={description}>
   <HomeLayout>
     <article class="mx-auto sm:w-8/12 md:w-xl">
       <ul class="post-list pt-20 pb-10">
