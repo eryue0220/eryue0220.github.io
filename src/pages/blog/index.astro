@@ -2,8 +2,9 @@
 import { type CollectionEntry, getCollection } from "astro:content";
 import Page from "@/layouts/page.astro";
 import BlogLayout from "@/layouts/blog.astro";
-import { SITE_TITLE as title } from "@/constant";
 import { formatDate } from "@/utils";
+
+const description = "Published notes on web engineering, observability, interviews, and related topics.";
 
 type Post = CollectionEntry<"blog">;
 
@@ -93,7 +94,7 @@ const isOnlyOne = postsKeys.length === 1;
   }
 </script>
 
-<Page header={title}>
+<Page title="Blog" description={description} markdownUrl="/blog/index.md">
   <BlogLayout>
     <article data-blog class="grid grid-cols-[minmax(0,1fr)_clamp(7rem,22vw,10rem)] items-start gap-[clamp(1rem,4vw,2.5rem)] mx-auto py-20 px-4 sm:px-5 [&_[hidden]]:hidden! [&_button]:focus-visible:outline-2 [&_button]:focus-visible:outline-solid [&_button]:focus-visible:outline-accent [&_button]:focus-visible:outline-offset-3">
 

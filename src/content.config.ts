@@ -4,12 +4,14 @@ import { glob } from 'astro/loaders';
 
 const contentSchema = z.object({
   title: z.string(),
+  description: z.string().optional(),
   tag: z.string(),
   draft: z.boolean().optional(),
   lang: z.string().optional(),
   date: z.coerce.date(),
   updatedDate: z.coerce.date().optional(),
 });
+
 
 export const collections = {
   blog: defineCollection({

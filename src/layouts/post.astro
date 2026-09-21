@@ -2,10 +2,21 @@
 import PageLayout from './page.astro'
 import IndexLayout from './index.astro';
 
-const { header } = Astro.props;
+interface Props {
+  header: string;
+  description?: string;
+  type?: 'website' | 'article';
+  publishedTime?: Date;
+  updatedTime?: Date;
+  tags?: string[];
+  lang?: string;
+  markdownUrl?: string;
+}
+
+const { header, ...seo } = Astro.props;
 ---
 
-<PageLayout header={header}>
+<PageLayout title={header} {...seo}>
   <IndexLayout>
     <slot />
   </IndexLayout>

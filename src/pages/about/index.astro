@@ -5,7 +5,7 @@ import Education from "@/components/education";
 import Language from "@/components/language";
 import Work from "@/components/work";
 import Skill from "@/components/skill";
-import { SITE_TITLE as title } from "@/constant";
+import { SITE_AUTHOR, SITE_TITLE as title } from "@/constant";
 
 import education from "../../../public/config/education.json";
 import building from "../../../public/config/building.json";
@@ -14,9 +14,11 @@ import learn from "../../../public/config/learn.json";
 import oss from "../../../public/config/oss.json";
 import skill from "../../../public/config/skill.json";
 import work from "../../../public/config/work.json";
+
+const description = `About ${SITE_AUTHOR}: work experience, projects, open-source contributions, skills, education, and languages.`;
 ---
 
-<PageLayout header={title}>
+<PageLayout title="About" description={description} markdownUrl="/about/index.md">
   <HomeLayout title={title}>
     <div class="mx-auto w-full max-w-5xl px-5 text-[#24231f] sm:px-8">
       <!-- Experience -->

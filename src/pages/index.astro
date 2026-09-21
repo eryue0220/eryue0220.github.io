@@ -2,10 +2,10 @@
 import Page from '@/layouts/page.astro';
 import Home from '@/layouts/index.astro';
 import Intro from '@/components/intro/index.astro';
-import { SITE_TITLE as title } from '@/constant';
+import { SITE_DESCRIPTION, SITE_TITLE as title } from '@/constant';
 ---
 
-<Page header={title}>
+<Page title={title} description={SITE_DESCRIPTION} markdownUrl="/index.md">
   <Home title={title}>
     <Intro />
   </Home>
